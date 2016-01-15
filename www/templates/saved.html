@@ -1,14 +1,25 @@
 <ion-view view-title="Sparade">
   <ion-content>
-    <h1 class="text-center">Sparade placeholder</h1>
+    <h3 class="text-center">Sparade placeholder</h3>
 
     <ion-list>
     <ion-item ng-repeat="item in items | orderBy:'-createdAt'">
-      <p>Caroline: {{item.caroline}} kr</p>
-      <p>Daniel: {{item.daniel}} kr</p>
-      <p ng-if="item.done == false">Status: inte betald</p>
-      <p ng-if="item.done == true">Status: betald</p>
-      <p><span am-time-ago="item.createdAt"></p>
+      <div class="row">
+        <div class="col-60">
+          <p>Caroline: {{item.caroline}} kr</p>
+          <p>Daniel: {{item.daniel}} kr</p>
+          <p ng-if="item.done == false">Status: inte betald</p>
+          <p ng-if="item.done == true">Status: betald</p>
+          <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+        </div>
+
+        <div class="col-40">
+          <button ng-click="markDone(item.$id)" class="button button-outline button-small button-block button-balanced">Klar</button>
+          <button ng-click="remove(item.$id)"class="button button-outline button-small button-block button-assertive">Ta bort</button>
+        </div>
+
+      </div>
+
     </ion-item>
   </ion-list>
 
