@@ -74,7 +74,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to mark a object as done
   $scope.markDone = function(object) {
     console.log('marking item done with id', object);
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com' + '/' + object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.update({
       done: true
     });
@@ -83,7 +83,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to mark a object as undone
   $scope.markUnDone = function(object) {
     console.log('mark undone');
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com' + '/' + object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.update({
       done: false
     });
@@ -92,7 +92,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to delete single entry in db
   $scope.remove = function(object) {
     console.log('deleting item with it', object);
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com' + '/' + object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.remove();
   }
 })
