@@ -51,6 +51,12 @@ angular.module('app.controllers', ['firebase'])
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
+    console.log(Items);
+    $scope.items = Items;
+    $scope.items.$add({
+      'caroline': $scope.caroline,
+      'daniel': $scope.daniel
+    })
   }
 
 })
