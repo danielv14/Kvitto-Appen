@@ -8,6 +8,7 @@
       <p>Daniel: {{item.daniel}} kr</p>
       <p ng-if="item.done == false">Status: inte betald</p>
       <p ng-if="item.done == true">Status: betald</p>
+      <p><span am-time-ago="item.createdAt"></p>
     </ion-item>
   </ion-list>
 

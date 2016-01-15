@@ -1,4 +1,8 @@
-angular.module('app.controllers', ['firebase'])
+angular.module('app.controllers', ['firebase', 'angularMoment'])
+
+// .run(function(amMoment) {
+//     amMoment.changeLocale('de');
+// })
 
 .controller('calculateCtrl', function($scope, $http, Items) {
   console.log('calculateCtrl working!');
@@ -52,12 +56,13 @@ angular.module('app.controllers', ['firebase'])
   $scope.save = function() {
     console.log('saving');
     console.log(Items);
+
     $scope.items = Items;
     $scope.items.$add({
       'caroline': $scope.caroline,
       'daniel': $scope.daniel,
+      'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
-      'created': new Date()
     })
   }
 
@@ -69,4 +74,6 @@ angular.module('app.controllers', ['firebase'])
 
 
   $scope.items = Items;
+  console.log($scope.items);
+
 })
