@@ -52,7 +52,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
-    console.log(Items);
 
     $scope.items = Items;
     $scope.items.$add({
@@ -71,7 +70,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 
   $scope.items = Items;
-  console.log($scope.items);
 
   $scope.markDone = function(object) {
     console.log('marking item done with id', object);
