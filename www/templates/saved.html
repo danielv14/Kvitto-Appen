@@ -15,7 +15,8 @@
           </div>
 
           <div class="col-40">
-            <button ng-click="markDone(item.$id)" class="button button-outline button-small button-block button-balanced">Klar</button>
+            <button ng-if="item.done == false" ng-click="markDone(item.$id)" class="button button-outline button-small button-block button-balanced">Klar</button>
+            <button ng-if="item.done == true" ng-click="markUnDone(item.$id)" class="button button-outline button-small button-block button-royal">Oklar</button>
             <button ng-click="remove(item.$id)"class="button button-outline button-small button-block button-assertive">Ta bort</button>
           </div>
         </div>
