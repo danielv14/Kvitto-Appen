@@ -1,8 +1,5 @@
 angular.module('app.controllers', ['firebase', 'angularMoment'])
 
-// .run(function(amMoment) {
-//     amMoment.changeLocale('de');
-// })
 
 .controller('calculateCtrl', function($scope, $http, Items) {
   console.log('calculateCtrl working!');
