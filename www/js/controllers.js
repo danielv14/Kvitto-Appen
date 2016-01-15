@@ -76,4 +76,11 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   $scope.items = Items;
   console.log($scope.items);
 
+  $scope.markDone = function(object) {
+    console.log('marking item done with id', object);
+  }
+
+  $scope.remove = function(object) {
+    console.log('deleting item with it', object);
+  }
 })
