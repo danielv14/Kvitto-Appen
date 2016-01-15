@@ -1,6 +1,6 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['firebase'])
 
-.controller('calculateCtrl', function($scope, $http) {
+.controller('calculateCtrl', function($scope, $http, Items) {
   console.log('calculateCtrl working!');
   // Declare global variables
   var daniel_round, caroline_round, daniel_round_percent, caroline_round_percent;
@@ -56,6 +56,6 @@ angular.module('app.controllers', [])
 })
 
 // controller for the database
-.controller('databaseCtrl', function($scope, $http) {
+.controller('databaseCtrl', function($scope, $http, Items) {
   console.log('databaseCtrl working');
 })
