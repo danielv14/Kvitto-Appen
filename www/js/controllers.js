@@ -27,11 +27,11 @@ angular.module('app.controllers', [])
     var caroline_percent = (parseFloat(caroline_total)*100/parseFloat(total));
     var daniel_percent = (parseFloat(daniel_total)*100/parseFloat(total));
 
-    //  rounded variables for daniel. To be injected into html later
+    //  rounded variables for daniel.
     daniel_round = Math.round(daniel_total * 100) / 100; // variable for total kr
     daniel_round_percent = Math.round(daniel_percent * 100) / 100; // variable for % of total
 
-    // rounded varaibles for caroline. To be injected into html later
+    // rounded varaibles for caroline.
     caroline_round = Math.round(caroline_total * 100) / 100; // variable for total kr
     caroline_round_percent = Math.round(caroline_percent * 100) / 100; // variable for % of total
 
@@ -48,12 +48,14 @@ angular.module('app.controllers', [])
 
   }
 
+  // function to save values to db
   $scope.save = function() {
     console.log('saving');
   }
 
 })
 
+// controller for the database
 .controller('databaseCtrl', function($scope, $http) {
   console.log('databaseCtrl working');
 })
