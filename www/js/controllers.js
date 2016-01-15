@@ -101,6 +101,15 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 .controller('notFinishedCtrl', function($scope, $http, Items) {
   console.log('notFinishedCtrl working');
 
+})
 
-
+.controller('settingsCtrl', function($scope, $http, Items) {
+  console.log('controller working');
+  var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
+  itemRef.set({
+    config: {
+      person1: 'Jane Doe',
+      person2: 'John Doe'
+    }
+  })
 })
