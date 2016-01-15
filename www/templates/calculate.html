@@ -1,0 +1,30 @@
+<ion-view view-title="Räkna kvitto">
+  <ion-content>
+    <div>
+      <h1 class="text-center">Räkna ut</h1>
+      <div class="list" id="calculator">
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Totalt</span>
+          <input type="number" id="amount" ng-model="sum.Total" placeholder="Totalt">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Caroline</span>
+          <input type="number" id="caroline" ng-model="sum.Caroline"placeholder="Caroline">
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Daniel</span>
+          <input type="number" id="daniel" ng-model="sum.Daniel" placeholder="Daniel">
+        </label>
+        <div class="padding-button">
+          <button class="button button-block button-positive" ng-click='calculate()' id="calculate">Räkna ut</button>
+        </div>
+    </div>
+
+    <p>Caroline handlade för: {{caroline}} {{caroline_percent}}%</p>
+    <p>Daniel handlade för: {{daniel}} {{daniel_percent}}%</p>
+
+  </ion-content>
+
+
+
+</ion-view>
