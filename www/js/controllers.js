@@ -71,8 +71,13 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
   $scope.items = Items;
 
+  // function to mark a object as done
   $scope.markDone = function(object) {
     console.log('marking item done with id', object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com' + '/' + object);
+    itemRef.update({
+      done: true
+    });
   }
 
   // function to delete single entry in db
