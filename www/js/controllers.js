@@ -87,3 +87,11 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.remove();
   }
 })
+
+// controller for the database
+.controller('notFinishedCtrl', function($scope, $http, Items) {
+  console.log('notFinishedCtrl working');
+
+
+
+})

@@ -40,6 +40,12 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
     templateUrl: 'templates/saved.html',
     controller: 'databaseCtrl'
   })
+
+  .state('notFinished', {
+    url: '/notfinished',
+    templateUrl: 'templates/notFinished.html',
+    controller: 'notFinishedCtrl'
+  })
 })
 
 // factory for connecting to firebase db
