@@ -15,9 +15,9 @@
           </div>
 
           <div class="col-40">
-            <button ng-if="item.done == false" ng-click="markDone(item.$id)" class="button  button-small button-block button-balanced">Markera klar</button>
-            <button ng-if="item.done == true" ng-click="markUnDone(item.$id)" class="button button-small button-block button-assertive">Markera oklar</button>
-            <button ng-click="remove(item.$id)"class="button button-outline button-small button-block button-assertive">Ta bort</button>
+            <button ng-if="item.done == false" ng-click="markDone(item.$id)" class="ion-ios-checkmark-outline button button-small button-block button-calm"> Markera klar</button>
+            <button ng-if="item.done == true" ng-click="markUnDone(item.$id)" class="ion-ios-close-outline button button-small button-block button-calm"> Markera oklar</button>
+            <button ng-click="remove(item.$id)"class="ion-trash-a button button-outline button-small button-block button-assertive"> Ta bort</button>
           </div>
         </div>
       </div>
