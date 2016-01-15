@@ -11,3 +11,10 @@
 .visible {
   display: block !important;
 }
+
+.payed {
+  color: #33cd5f;
+}
+.not-payed {
+  color: #ef473a;
+}
