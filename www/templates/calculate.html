@@ -16,12 +16,31 @@
           <input type="number" id="daniel" ng-model="sum.Daniel" placeholder="Daniel">
         </label>
         <div class="padding-button">
-          <button class="button button-block button-positive" ng-click='calculate()' id="calculate">Räkna ut</button>
+          <button class="button button-block button-calm" ng-click='calculate()' id="calculate">Räkna ut</button>
         </div>
     </div>
 
-    <p>Caroline handlade för: {{caroline}} {{caroline_percent}}%</p>
-    <p>Daniel handlade för: {{daniel}} {{daniel_percent}}%</p>
+
+    <div class="card hidden" id="hidden-caroline-card">
+      <div class="item item-text-wrap">
+        <h2>Caroline</h2>
+        <p>Caroline handlade för {{caroline}} kr.</p>
+        <p>Detta är {{caroline_percent}}% av köpet.</p>
+      </div>
+    </div>
+
+    <div class="card hidden" id="hidden-daniel-card">
+      <div class="item item-text-wrap">
+        <h2>Daniel</h2>
+        <p>Daniel handlade för {{daniel}} kr.</p>
+        <p>Detta är {{daniel_percent}}% av köpet.</p>
+      </div>
+    </div>
+
+    <div class="padding-button hidden" id="hidden-save-button">
+      <button class="button button-block button-balanced" ng-click='save()' id="save">Spara</button>
+    </div>
+
 
   </ion-content>
 

@@ -2,14 +2,11 @@ angular.module('app.controllers', [])
 
 .controller('calculateCtrl', function($scope, $http) {
   console.log('calculateCtrl working!');
-    // Declare global variables
-    var daniel_round, caroline_round, daniel_round_percent, caroline_round_percent;
+  // Declare global variables
+  var daniel_round, caroline_round, daniel_round_percent, caroline_round_percent;
 
-  $scope.test = 'hej';
-
+  // calculate click button
   $scope.calculate = function() {
-    console.log('click');
-
 
     // create variables that read from the input fields
     var amount = $('#amount').val();
@@ -44,7 +41,17 @@ angular.module('app.controllers', [])
     $scope.daniel_percent = daniel_round_percent;
     $scope.caroline_percent = caroline_round_percent;
 
+    // Fade-in the card
+    $('#hidden-caroline-card').addClass('visible animated bounceIn');
+    $('#hidden-daniel-card').addClass('visible animated bounceIn');
+    $('#hidden-save-button').addClass('visible animated bounceIn');
+
   }
+
+  $scope.save = function() {
+    console.log('saving');
+  }
+
 })
 
 .controller('databaseCtrl', function($scope, $http) {
