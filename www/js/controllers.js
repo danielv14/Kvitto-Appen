@@ -55,7 +55,9 @@ angular.module('app.controllers', ['firebase'])
     $scope.items = Items;
     $scope.items.$add({
       'caroline': $scope.caroline,
-      'daniel': $scope.daniel
+      'daniel': $scope.daniel,
+      'done': false,
+      'created': new Date()
     })
   }
 
@@ -64,4 +66,7 @@ angular.module('app.controllers', ['firebase'])
 // controller for the database
 .controller('databaseCtrl', function($scope, $http, Items) {
   console.log('databaseCtrl working');
+
+
+  $scope.items = Items;
 })

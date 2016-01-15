@@ -6,6 +6,8 @@
     <ion-item ng-repeat="item in items">
       <p>Caroline: {{item.caroline}} kr</p>
       <p>Daniel: {{item.daniel}} kr</p>
+      <p ng-if="item.done == false">Status: inte betald</p>
+      <p ng-if="item.done == true">Status: betald</p>
     </ion-item>
   </ion-list>
 
