@@ -3,7 +3,7 @@
     <h1 class="text-center">Sparade placeholder</h1>
 
     <ion-list>
-    <ion-item ng-repeat="item in items">
+    <ion-item ng-repeat="item in items | orderBy:'-createdAt'">
       <p>Caroline: {{item.caroline}} kr</p>
       <p>Daniel: {{item.daniel}} kr</p>
       <p ng-if="item.done == false">Status: inte betald</p>
