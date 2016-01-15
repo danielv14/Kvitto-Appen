@@ -80,7 +80,10 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     console.log('marking item done with id', object);
   }
 
+  // function to delete single entry in db
   $scope.remove = function(object) {
     console.log('deleting item with it', object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com' + '/' + object);
+    itemRef.remove();
   }
 })
