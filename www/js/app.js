@@ -25,32 +25,61 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/')
 
   $stateProvider
 
-  .state('calculate', {
-    url: '/',
-    templateUrl: 'templates/calculate.html',
+  // setup an abstract state for the tabs directive
+  .state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html'
   })
 
-  .state('saved', {
+  .state('tab.calculate', {
+    url: '/calculate',
+    views: {
+      'tab-calculate': {
+        templateUrl: 'templates/calculate.html'
+
+      }
+    }
+  })
+
+  .state('tab.saved', {
     url: '/saved',
-    templateUrl: 'templates/saved.html',
-    controller: 'databaseCtrl'
+    views: {
+      'tab-saved': {
+        templateUrl: 'templates/saved.html',
+        controller: 'databaseCtrl'
+      }
+    }
+
   })
 
-  .state('notFinished', {
+  .state('tab.notFinished', {
     url: '/notfinished',
-    templateUrl: 'templates/notFinished.html',
-    controller: 'notFinishedCtrl'
+    views: {
+      'tab-notfinished': {
+        templateUrl: 'templates/notFinished.html',
+        controller: 'notFinishedCtrl'
+      }
+    }
+
   })
 
-  .state('settings', {
+  .state('tab.settings', {
     url: '/settings',
-    templateUrl: 'templates/settings.html',
+    views: {
+      'tab-settings': {
+        templateUrl: 'templates/settings.html'
+      }
+    }
+
   })
+  $urlRouterProvider.otherwise('/tab/calculate')
+
 })
+
 
 // factory for connecting to firebase db receipt
 .factory("Items", function($firebaseArray) {
