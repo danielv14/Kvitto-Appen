@@ -1,9 +1,8 @@
 <ion-view view-title="Ofärdiga kvitton">
   <ion-content>
-    <div class="row">
-      <div class="col-50">
+
         <h4 class="text-center">{{config[0].$value}} betalade</h4>
-        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'}" class="list card">
+        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" class="list card">
           <a ng-click="markDone(item.$id)" class="item item-icon-left">
             <i class="icon ion-ios-checkmark-outline"></i>
             <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
@@ -12,9 +11,8 @@
         </div>
       </div>
 
-      <div class="col-50">
         <h4 class="text-center">{{config[1].$value}} betalade</h4>
-        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'}" class="list card">
+        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" class="list card">
           <a ng-click="markDone(item.$id)" class="item item-icon-left">
             <i class="icon ion-ios-checkmark-outline"></i>
             <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
