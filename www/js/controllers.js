@@ -1,8 +1,16 @@
 angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 
-.controller('calculateCtrl', function($scope, $http, Items) {
+.controller('calculateCtrl', function($scope, $http, Config, Items) {
   console.log('calculateCtrl working!');
+
+  // inject current names from config db to scope
+  // var personRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
+  // console.log($firebaseArray(personRef));
+  // $scope.names = $firebaseArray(personRef);
+  $scope.config = Config;
+  console.log($scope.config);
+
   // Declare global variables
   var daniel_round, caroline_round, daniel_round_percent, caroline_round_percent;
 
@@ -52,11 +60,20 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
+    console.log($scope.config);
+
+    // create variables from $scope.cofig names
+    var person1 = $scope.config[0].$value;
+    var person2 = $scope.config[1].$value;
+    console.log('person1', person1);
 
     $scope.items = Items;
+    console.log($scope.items);
     $scope.items.$add({
-      'caroline': $scope.caroline,
-      'daniel': $scope.daniel,
+      costPerson1: $scope.caroline,
+      costPerson2: $scope.daniel,
+      namePerson1: person1,
+      namePerson2: person2,
       'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
     })
@@ -112,8 +129,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
   // function to init names in config db
   $scope.initNames = function() {
-
-    console.log('click');
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
     itemRef.set({
       config: {
@@ -123,10 +138,9 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     })
   }
 
+  // function to update names
   $scope.updateNames = function() {
-    console.log('click updateNames');
-     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
-    console.log($scope.person_newNamePerson1);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
     itemRef.update({
       'person1': $scope.person_newNamePerson1,
       'person2': $scope.person_newNamePerson2

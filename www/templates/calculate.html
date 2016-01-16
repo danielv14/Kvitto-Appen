@@ -9,12 +9,12 @@
           <input type="number" id="amount" ng-model="sum.Total" placeholder="Totalt">
         </label>
         <label class="item item-input item-floating-label">
-          <span class="input-label">Caroline</span>
-          <input type="number" id="caroline" ng-model="sum.Caroline"placeholder="Caroline">
+          <span class="input-label">{{config[0].$value}}</span>
+          <input type="number" id="caroline" ng-model="sum.Caroline" placeholder="{{config[0].$value}}">
         </label>
         <label class="item item-input item-floating-label">
-          <span class="input-label">Daniel</span>
-          <input type="number" id="daniel" ng-model="sum.Daniel" placeholder="Daniel">
+          <span class="input-label">{{config[1].$value}}</span>
+          <input type="number" id="daniel" ng-model="sum.Daniel" placeholder="{{config[1].$value}}">
         </label>
 
         <div class="padding-button">
@@ -25,16 +25,16 @@
 
     <div class="card hidden" id="hidden-caroline-card">
       <div class="item item-text-wrap">
-        <h2>Caroline</h2>
-        <p>Caroline handlade för {{caroline}} kr.</p>
+        <h2>{{config[0].$value}}</h2>
+        <p>{{config[0].$value}} handlade för {{caroline}} kr.</p>
         <p>Detta är {{caroline_percent}}% av köpet.</p>
       </div>
     </div>
 
     <div class="card hidden" id="hidden-daniel-card">
       <div class="item item-text-wrap">
-        <h2>Daniel</h2>
-        <p>Daniel handlade för {{daniel}} kr.</p>
+        <h2>{{config[1].$value}}</h2>
+        <p>{{config[1].$value}} handlade för {{daniel}} kr.</p>
         <p>Detta är {{daniel_percent}}% av köpet.</p>
       </div>
     </div>
