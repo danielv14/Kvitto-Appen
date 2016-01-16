@@ -15,6 +15,14 @@
           <span class="input-label">{{config[1].$value}}</span>
           <input type="number" ng-model="person2" placeholder="{{config[1].$value}}">
         </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Vem betalade?
+          </div>
+          <select data-ng-options="o.$value for o in config" ng-model="selectedOption">
+
+          </select>
+        </label>
 
           <div class="row text-center">
             <div class="col-50">

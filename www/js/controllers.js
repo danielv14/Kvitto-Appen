@@ -11,6 +11,9 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   $scope.config = Config;
   console.log($scope.config);
 
+  // set predefined option for who payed
+  $scope.selectedOption = $scope.config[1];
+
   // Declare global variables
   var person2_round, person1_round, person2_round_percent, person1_round_percent;
 
@@ -56,12 +59,14 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     $('#hidden-person2-card').addClass('visible animated bounceIn');
     $('#hidden-save-button').addClass('visible animated bounceIn');
 
+
   }
 
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
     console.log($scope.config);
+
 
     // create variables from $scope.cofig names
     var person1 = $scope.config[0].$value;
@@ -77,6 +82,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       namePerson2: person2,
       'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
+      'whoPayed': $scope.selectedOption.$value
     })
   }
 
