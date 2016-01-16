@@ -16,20 +16,18 @@
           <input type="number" ng-model="person2" placeholder="{{config[1].$value}}">
         </label>
 
-        <div class="">
           <div class="row text-center">
-            <div class="col-40 padding-left">
+            <div class="col-50">
               <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
             </div>
-            <div class="col-40 padding-left">
-              <button class="button button-block button-balanced ion-ios-bookmarks hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+            <div class="col-50 padding-left">
+              <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
             </div>
           </div>
 
-        </div>
     </div>
 
-
+    <!-- Cards -->
     <div class="card hidden" id="hidden-person1-card">
       <div class="item item-text-wrap">
         <h2>{{config[0].$value}}</h2>
@@ -46,13 +44,5 @@
       </div>
     </div>
 
-    <div class="padding-button hidden" id="hidden-save-button">
-    </div>
-
-
-
   </ion-content>
-
-
-
 </ion-view>
