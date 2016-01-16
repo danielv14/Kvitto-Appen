@@ -2,6 +2,26 @@
 
   <ion-content>
 
+    <div ng-repeat="item in notFinished | filter:{done:false}" class="card">
+      <div class="item item-text-wrap card-notpayed">
+        <div class="row">
+          <div class="col-60">
+            <a ng-click="markDone(item.$id)">
+              <p>{{item.namePerson1}}: {{item.costPerson1}} kr</p>
+              <p>{{item.namePerson2}}: {{item.costPerson2}} kr</p>
+              <p ng-if="item.done == false">Status: <span class="not-payed">inte betald</span></p>
+              <p ng-if="item.done == true">Status: <span class="payed">betald</span></p>
+              <p>{{item.whoPayed}} betalade</p>
+              <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+            </a>
+          </div>
+
+          <div class="col-40">
+            <button ng-click="markDone(item.$id)"class="ion-trash-a button button-outline button-small button-block button-balanced"> Markera klar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </ion-content>
 
 </ion-view>

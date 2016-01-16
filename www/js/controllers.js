@@ -126,6 +126,19 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 .controller('notFinishedCtrl', function($scope, $http, Items) {
   console.log('notFinishedCtrl working');
 
+  $scope.notFinished = Items;
+
+  var loopThrough = $scope.notFinished;
+
+  // function to mark a object as done
+  $scope.markDone = function(object) {
+    console.log('marking item done with id', object);
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
+    itemRef.update({
+      done: true
+    });
+  }
+
 })
 
 // controller for settings page, mostly handling of names for persons.
