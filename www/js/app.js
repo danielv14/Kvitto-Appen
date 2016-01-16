@@ -32,7 +32,6 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
   .state('calculate', {
     url: '/',
     templateUrl: 'templates/calculate.html',
-    controller: 'calculateCtrl'
   })
 
   .state('saved', {
