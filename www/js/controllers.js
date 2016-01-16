@@ -124,13 +124,11 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 })
 
 // controller for the database
-.controller('notFinishedCtrl', function($scope, $http, Items) {
+.controller('notFinishedCtrl', function($scope, $http, Items, Config) {
   console.log('notFinishedCtrl working');
 
   $scope.notFinished = Items;
-
-
-  var loopThrough = $scope.notFinished;
+  $scope.config = Config;
 
 
   // function to mark a object as done

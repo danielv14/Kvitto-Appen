@@ -1,9 +1,32 @@
 <ion-view view-title="Ofärdiga kvitton">
-
   <ion-content>
+    <div class="row">
+      <div class="col-50">
+        <h4 class="text-center">{{config[0].$value}} betalade</h4>
+        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'}" class="list card">
+          <a ng-click="markDone(item.$id)" class="item item-icon-left">
+            <i class="icon ion-ios-checkmark-outline"></i>
+            <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+            <p>{{item.namePerson2}} är skyldig {{item.costPerson2}} kr</p>
+          </a>
+        </div>
+      </div>
 
-    <div ng-repeat="item in notFinished | filter:{done:false}" class="card">
-      <div class="item item-text-wrap card-notpayed">
+      <div class="col-50">
+        <h4 class="text-center">{{config[1].$value}} betalade</h4>
+        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'}" class="list card">
+          <a ng-click="markDone(item.$id)" class="item item-icon-left">
+            <i class="icon ion-ios-checkmark-outline"></i>
+            <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+            <p>{{item.namePerson1}} är skyldig {{item.costPerson1}} kr</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+      <!-- <div class="item item-text-wrap card-notpayed">
         <div class="row">
           <div class="col-60">
 
@@ -19,7 +42,7 @@
             <button ng-click="markDone(item.$id)"class="ion-trash-a button button-outline button-small button-block button-balanced"> Markera klar</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </ion-content>
 
