@@ -2,7 +2,6 @@
   <ion-content ng-controller="calculateCtrl">
 
     <div>
-      <h1 class="text-center">Räkna ut</h1>
       <div class="list" id="calculator">
         <label class="item item-input item-floating-label">
           <span class="input-label">Totalt</span>
@@ -17,8 +16,16 @@
           <input type="number" ng-model="person2" placeholder="{{config[1].$value}}">
         </label>
 
-        <div class="padding-button">
-          <button class="button button-block button-calm ion-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
+        <div class="">
+          <div class="row text-center">
+            <div class="col-40 padding-left">
+              <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
+            </div>
+            <div class="col-40 padding-left">
+              <button class="button button-block button-balanced ion-ios-bookmarks hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+            </div>
+          </div>
+
         </div>
     </div>
 
@@ -40,8 +47,8 @@
     </div>
 
     <div class="padding-button hidden" id="hidden-save-button">
-      <button class="button button-block button-balanced ion-bookmark" ng-click='save()' id="save"> Spara</button>
     </div>
+
 
 
   </ion-content>
