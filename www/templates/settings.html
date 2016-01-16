@@ -1,8 +1,28 @@
 <ion-view view-title="Inställningar">
   <ion-content ng-controller="settingsCtrl">
+  <div class="padding-button">
+    <button class="button button-block button-calm" ng-click='initNames()'> Initiera namn</button>
+    <p>Nuvarande namn:</p>
+    <div ng-repeat="person in config">
+      <p>{{person.$value}}</p>
+    </div>
+  </div>
 
-  <ion-content>
-  <h2>Inställningar</h2>
+
+  <div class="list">
+    <label class="item item-input">
+      <input type="text" ng-model="person_newNamePerson1" placeholder="Person 1">
+    </label>
+    <label class="item item-input">
+      <input type="text" ng-model="person_newNamePerson2" placeholder="Person 2">
+    </label>
+    <div class="padding-button">
+      <button class="button button-block button-balanced" ng-click='updateNames()'> Uppdatera namn</button>
+    </div>
+
+  </div>
+
+
   </ion-content>
 
 </ion-view>
