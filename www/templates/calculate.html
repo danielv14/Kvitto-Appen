@@ -19,9 +19,11 @@
           <div class="input-label">
             Vem betalade?
           </div>
-          <select data-ng-options="o.$value for o in config" ng-model="selectedOption">
-
+          <select name="singleSelect" ng-model="data.singleSelect">
+            <option value="person1">{{config[0].$value}}</option>
+            <option value="person2">{{config[1].$value}}</option>
           </select>
+          {{data.singleSelect}}
         </label>
 
           <div class="row text-center">

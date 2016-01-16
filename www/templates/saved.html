@@ -13,7 +13,8 @@
                 <p>{{item.namePerson2}}: {{item.costPerson2}} kr</p>
                 <p ng-if="item.done == false">Status: <span class="not-payed">inte betald</span></p>
                 <p ng-if="item.done == true">Status: <span class="payed">betald</span></p>
-                <p>{{item.whoPayed}} betalade</p>
+                <p ng-if="item.whoPayed == 'person1'">{{config[0].$value}} betalade</p>
+                <p ng-if="item.whoPayed == 'person2'">{{config[1].$value}} betalade</p>
                 <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
               </a>
 

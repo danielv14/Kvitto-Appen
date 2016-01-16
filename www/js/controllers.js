@@ -12,7 +12,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   console.log($scope.config);
 
   // set predefined option for who payed
-  $scope.selectedOption = $scope.config[1];
+  // $scope.selectedOption = $scope.config[1];
 
   // Declare global variables
   var person2_round, person1_round, person2_round_percent, person1_round_percent;
@@ -82,16 +82,17 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       namePerson2: person2,
       'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
-      'whoPayed': $scope.selectedOption.$value
+      'whoPayed': $scope.data.singleSelect
     })
   }
 
 })
 
 // controller for the database
-.controller('databaseCtrl', function($scope, $http, Items) {
+.controller('databaseCtrl', function($scope, $http, Items, Config) {
   console.log('databaseCtrl working');
 
+  $scope.config = Config
 
   $scope.items = Items;
   console.log($scope.items);
@@ -128,7 +129,9 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
   $scope.notFinished = Items;
 
+
   var loopThrough = $scope.notFinished;
+
 
   // function to mark a object as done
   $scope.markDone = function(object) {
