@@ -70,6 +70,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 
   $scope.items = Items;
+  console.log($scope.items);
 
   // function to mark a object as done
   $scope.markDone = function(object) {
@@ -103,13 +104,33 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 })
 
-.controller('settingsCtrl', function($scope, $http, Items) {
+// controller for settings page, mostly handling of names for persons.
+.controller('settingsCtrl', function($scope, $http, Config) {
   console.log('controller working');
-  var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
-  itemRef.set({
-    config: {
-      person1: 'Jane Doe',
-      person2: 'John Doe'
-    }
-  })
+  $scope.config = Config;
+  console.log($scope.config);
+
+  // function to init names in config db
+  $scope.initNames = function() {
+
+    console.log('click');
+    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
+    itemRef.set({
+      config: {
+        'person1': 'Jane Doe',
+        'person2': 'John Doe'
+      }
+    })
+  }
+
+  $scope.updateNames = function() {
+    console.log('click updateNames');
+     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
+    console.log($scope.person_newNamePerson1);
+    itemRef.update({
+      'person1': $scope.person_newNamePerson1,
+      'person2': $scope.person_newNamePerson2
+    });
+  }
+
 })
