@@ -50,7 +50,6 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
   .state('settings', {
     url: '/settings',
     templateUrl: 'templates/settings.html',
-    controller: 'settingsCtrl'
   })
 })
 
