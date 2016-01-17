@@ -4,12 +4,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 .controller('calculateCtrl', function($scope, $http, Config, Items) {
   console.log('calculateCtrl working!');
 
-  // inject current names from config db to scope
-  // var personRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
-  // console.log($firebaseArray(personRef));
-  // $scope.names = $firebaseArray(personRef);
   $scope.config = Config;
-  console.log($scope.config);
 
   // set predefined option for who payed
   // $scope.selectedOption = $scope.config[1];
