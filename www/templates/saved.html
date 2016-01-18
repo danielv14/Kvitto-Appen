@@ -1,7 +1,57 @@
-<ion-view view-title="Sparade">
+<ion-view view-title="Sparade kvitton">
+
   <ion-content>
-    <h1 class="text-center">Sparade placeholder</h1>
+    <div ng-repeat="item in items | orderBy:'-createdAt'" class="card">
+      <!-- card type -->
+      <!-- if card is not payed yet -->
+      <div ng-if="item.done == false">
+        <div class="item item-text-wrap card-notpayed">
+          <div class="row">
+            <div class="col-60">
+              <a ng-click="markDone(item.$id)">
+                <p>{{item.namePerson1}}: {{item.costPerson1}} kr</p>
+                <p>{{item.namePerson2}}: {{item.costPerson2}} kr</p>
+                <!-- <p ng-if="item.done == false">Status: <span class="not-payed">inte betald</span></p>
+                <p ng-if="item.done == true">Status: <span class="payed">betald</span></p> -->
+                <p ng-if="item.whoPayed == 'person1'">{{item.namePerson1}} betalade</p>
+                <p ng-if="item.whoPayed == 'person2'">{{item.namePerson2}} betalade</p>
+                <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+              </a>
+
+            </div>
+
+            <div class="col-40">
+              <button ng-click="remove(item.$id)"class="ion-trash-a button button-outline button-small button-block button-assertive"> Ta bort</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- if card is payed -->
+      <div ng-if="item.done == true">
+        <div class="item item-text-wrap">
+          <div class="row">
+            <div class="col-60">
+              <a ng-click="markUnDone(item.$id)">
+                <p>{{item.namePerson1}}: {{item.costPerson1}} kr</p>
+                <p>{{item.namePerson2}}: {{item.costPerson2}} kr</p>
+                <!-- <p ng-if="item.done == false">Status: <span class="not-payed">inte betald</span></p>
+                <p ng-if="item.done == true">Status: <span class="payed">betald</span></p> -->
+                <p ng-if="item.whoPayed == 'person1'">{{item.namePerson1}} betalade</p>
+                <p ng-if="item.whoPayed == 'person2'">{{item.namePerson2}} betalade</p>
+                <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+              </a>
+            </div>
+            <div class="col-40">
+              <button ng-click="remove(item.$id)"class="ion-trash-a button button-outline button-small button-block button-assertive"> Ta bort</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
   </ion-content>
+  <div class="applyFooter">
 
+  </div>
 </ion-view>

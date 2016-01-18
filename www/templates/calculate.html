@@ -1,49 +1,57 @@
 <ion-view view-title="Räkna kvitto">
-  <ion-content>
+  <ion-content ng-controller="calculateCtrl">
+
     <div>
-      <h1 class="text-center">Räkna ut</h1>
       <div class="list" id="calculator">
         <label class="item item-input item-floating-label">
           <span class="input-label">Totalt</span>
-          <input type="number" id="amount" ng-model="sum.Total" placeholder="Totalt">
+          <input type="number" ng-model="amount" placeholder="Totalt">
         </label>
         <label class="item item-input item-floating-label">
-          <span class="input-label">Caroline</span>
-          <input type="number" id="caroline" ng-model="sum.Caroline"placeholder="Caroline">
+          <span class="input-label">{{config[0].$value}}</span>
+          <input type="number" ng-model="person1" placeholder="{{config[0].$value}}">
         </label>
         <label class="item item-input item-floating-label">
-          <span class="input-label">Daniel</span>
-          <input type="number" id="daniel" ng-model="sum.Daniel" placeholder="Daniel">
+          <span class="input-label">{{config[1].$value}}</span>
+          <input type="number" ng-model="person2" placeholder="{{config[1].$value}}">
         </label>
-        <div class="padding-button">
-          <button class="button button-block button-calm ion-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
-        </div>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Vem betalade?
+          </div>
+          <select name="singleSelect" ng-model="data.singleSelect">
+            <option value="person1">{{config[0].$value}}</option>
+            <option value="person2">{{config[1].$value}}</option>
+          </select>
+        </label>
+
+          <div class="row text-center">
+            <div class="col-50">
+              <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
+            </div>
+            <div class="col-50 padding-left">
+              <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+            </div>
+          </div>
+
     </div>
 
-
-    <div class="card hidden" id="hidden-caroline-card">
+    <!-- Cards -->
+    <div class="card hidden" id="hidden-person1-card">
       <div class="item item-text-wrap">
-        <h2>Caroline</h2>
-        <p>Caroline handlade för {{caroline}} kr.</p>
-        <p>Detta är {{caroline_percent}}% av köpet.</p>
+        <h2>{{config[0].$value}}</h2>
+        <p>{{config[0].$value}} handlade för {{person1}} kr.</p>
+        <p>Detta är {{person1_percent}}% av köpet.</p>
       </div>
     </div>
 
-    <div class="card hidden" id="hidden-daniel-card">
+    <div class="card hidden" id="hidden-person2-card">
       <div class="item item-text-wrap">
-        <h2>Daniel</h2>
-        <p>Daniel handlade för {{daniel}} kr.</p>
-        <p>Detta är {{daniel_percent}}% av köpet.</p>
+        <h2>{{config[1].$value}}</h2>
+        <p>{{config[1].$value}} handlade för {{person2}} kr.</p>
+        <p>Detta är {{person2_percent}}% av köpet.</p>
       </div>
     </div>
-
-    <div class="padding-button hidden" id="hidden-save-button">
-      <button class="button button-block button-balanced ion-bookmark" ng-click='save()' id="save"> Spara</button>
-    </div>
-
 
   </ion-content>
-
-
-
 </ion-view>

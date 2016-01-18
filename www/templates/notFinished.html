@@ -1,0 +1,26 @@
+<ion-view view-title="Ofärdiga kvitton">
+  <ion-content>
+
+        <h4 class="text-center">{{config[0].$value}} betalade</h4>
+        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" class="list card">
+          <a ng-click="markDone(item.$id)" class="item item-icon-left">
+            <i class="icon ion-ios-checkmark-outline"></i>
+            <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+            <p>{{item.namePerson2}} är skyldig {{item.costPerson2}} kr</p>
+          </a>
+        </div>
+
+
+      <h4 class="text-center">{{config[1].$value}} betalade</h4>
+      <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" class="list card">
+        <a ng-click="markDone(item.$id)" class="item item-icon-left">
+          <i class="icon ion-ios-checkmark-outline"></i>
+          <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+          <p>{{item.namePerson1}} är skyldig {{item.costPerson1}} kr</p>
+        </a>
+      </div>
+
+
+  </ion-content>
+
+</ion-view>
