@@ -1,10 +1,15 @@
 angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 
-.controller('calculateCtrl', function($scope, $http, Config, Items) {
+.controller('calculateCtrl', function($scope, $http, Config, Items, WhoOwesWho) {
   console.log('calculateCtrl working!');
 
+  // set scope variable as factory variable
+  $scope.items = Items;
   $scope.config = Config;
+  $scope.who = WhoOwesWho;
+
+
 
 
   // Declare global variables
@@ -80,22 +85,41 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     // set localstorage if person 1 payed which means person 2 ows person 1
     if ($scope.data.singleSelect == 'person1') {
       console.log('person 1 payed');
+    // create variable for who db
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
 
-      if (localStorage.person2owsperson1) {
-      localStorage.person2owsperson1 = Number(localStorage.person2owsperson1) + $scope.person2;
+    /*
+    * logic for updating who-owes-who db depending on person1 or person2 payed
+    */
+    // If person1 payed
+    if ($scope.data.singleSelect == 'person1') {
+      // if the value is not zero = append
+      if ($scope.who[1].$value != 0) {
+        tempValue = $scope.who[1].$value; // create temp-value from person 2
+        whoRef.update({
+          person2owesperson1: $scope.person2 + tempValue
+        });
       } else {
-          localStorage.person2owsperson1 = $scope.person2;
+        whoRef.update({
+          person2owesperson1 : $scope.person2
+        })
       }
+
     }
-
-    // set localstorage if person 2 payed which means person1 ows person 2
+    // if person 2 payed
     if ($scope.data.singleSelect == 'person2') {
-      console.log('person 2 payed');
-      if (localStorage.person1owsperson2) {
-      localStorage.person1owsperson2 = Number(localStorage.person1owsperson2) + $scope.person1;
-      } else {
-          localStorage.person1owsperson2 = $scope.person1;
-      }
+      // if value is not zero = append
+      if ($scope.who[0].$value != 0) {
+        tempValue = $scope.who[0].$value;
+        whoRef.update({
+          person1owesperson2: $scope.person1 + tempValue
+        });
+        } else {
+          whoRef.update({
+            person1owesperson2: $scope.person1
+          })
+        }
+
     }
 
 
