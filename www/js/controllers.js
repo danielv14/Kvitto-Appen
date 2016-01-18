@@ -188,7 +188,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 })
 
 // controller for settings page, mostly handling of names for persons.
-.controller('settingsCtrl', function($scope, $http, Config) {
+.controller('settingsCtrl', function($scope, $http, Config, WhoOwesWho) {
   console.log('controller working');
   $scope.config = Config;
   console.log($scope.config);
@@ -212,6 +212,16 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       'person1': $scope.person_newNamePerson1,
       'person2': $scope.person_newNamePerson2
     });
+  }
+
+  $scope.resetOwes = function() {
+    console.log('click click');
+    // create variable for who db
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+    whoRef.update({
+      'person1owesperson2': 0,
+      'person2owesperson1': 0,
+    })
   }
 
 })
