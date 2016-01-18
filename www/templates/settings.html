@@ -1,11 +1,13 @@
 <ion-view view-title="Inställningar">
   <ion-content ng-controller="settingsCtrl">
-  <div ng-if="config[0].$value == 'Jane Doe'" class="padding-button">
+
+  <!-- init names -->
+  <div ng-if="config[2].$value != true" class="padding-button">
     <button class="button button-block button-calm" ng-click='initNames()'> Initiera namn</button>
-  </div>
+  </div> <!-- end of init names -->
 
-
-  <div class="list">
+  <!-- update names -->
+  <div class="list" ng-if="config[2].$value == true">
     <label class="item item-input">
       <input type="text" ng-model="person_newNamePerson1" placeholder="Nuvarande namn för person 1 är {{config[0].$value}}">
     </label>
@@ -15,10 +17,13 @@
     <div class="padding-button">
       <button class="button button-block button-balanced" ng-click='updateNames()'> Uppdatera namn</button>
     </div>
+  </div> <!-- end of update names -->
 
+  <hr>
+  <div class="padding-button">
+    <button ng-click="resetOwes()"class="button button-block button-assertive">Återställ skyldig-statistik</button>
   </div>
 
 
   </ion-content>
-
 </ion-view>

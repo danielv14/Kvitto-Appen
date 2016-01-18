@@ -25,14 +25,20 @@
           </select>
         </label>
 
-          <div class="row text-center">
-            <div class="col-50">
-              <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
-            </div>
-            <div class="col-50 padding-left">
-              <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
-            </div>
-          </div>
+
+        <ion-list name="category" ng-model"data.category">
+          <ion-radio ng-model="category.name" value="food">Mat</ion-radio>
+          <ion-radio ng-model="category.name" value="other">Övrigt</ion-radio>
+        </ion-list>
+
+        <div class="row text-center">
+        <div class="col-50">
+          <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
+        </div>
+        <div class="col-50 padding-left">
+          <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+        </div>
+      </div>
 
     </div>
 

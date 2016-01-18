@@ -1,26 +1,21 @@
 <ion-view view-title="Ofärdiga kvitton">
   <ion-content>
 
-        <h4 class="text-center">{{config[0].$value}} betalade</h4>
-        <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" class="list card">
-          <a ng-click="markDone(item.$id)" class="item item-icon-left">
-            <i class="icon ion-ios-checkmark-outline"></i>
-            <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
-            <p>{{item.namePerson2}} är skyldig {{item.costPerson2}} kr</p>
-          </a>
-        </div>
+    <div class="list">
+      <div class="item item-divider">Betalade av {{config[0].$value}}</div>
+      <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item item-icon-left"><i ng-if="item.category == 'food'"class="icon ion-fork"></i><i ng-if="item.category == 'other'" class="icon ion-ios-cart"></i>
+        <p>{{item.namePerson2}} skyldig {{item.costPerson2}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></span></p>
+      </a>
+      <li class="item">{{config[1].$value}} är skyldig totalt {{who[1].$value}} kr</li>
 
 
-      <h4 class="text-center">{{config[1].$value}} betalade</h4>
-      <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" class="list card">
-        <a ng-click="markDone(item.$id)" class="item item-icon-left">
-          <i class="icon ion-ios-checkmark-outline"></i>
-          <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
-          <p>{{item.namePerson1}} är skyldig {{item.costPerson1}} kr</p>
-        </a>
-      </div>
+      <div class="item item-divider">Betalade av {{config[1].$value}}</div>
+      <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item item-icon-left"><i ng-if="item.category == 'food'"class="icon ion-fork"></i><i ng-if="item.category == 'other'" class="icon ion-ios-cart"></i>
+        <p>{{item.namePerson1}} skyldig {{item.costPerson1}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></p>
+      </a>
+      <li class="item">{{config[0].$value}} är skyldig totalt {{who[0].$value}} kr</li>
 
+    </div>
 
   </ion-content>
-
 </ion-view>

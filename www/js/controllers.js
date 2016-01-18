@@ -1,13 +1,12 @@
 angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 
-.controller('calculateCtrl', function($scope, $http, Config, Items) {
+.controller('calculateCtrl', function($scope, $http, Config, Items, WhoOwesWho) {
   console.log('calculateCtrl working!');
-
+  // set scope variable as factory variable
+  $scope.items = Items;
   $scope.config = Config;
-
-  // set predefined option for who payed
-  // $scope.selectedOption = $scope.config[1];
+  $scope.who = WhoOwesWho;
 
   // Declare global variables
   var person2_round, person1_round, person2_round_percent, person1_round_percent;
@@ -53,23 +52,19 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     $('#hidden-person1-card').addClass('visible animated bounceIn');
     $('#hidden-person2-card').addClass('visible animated bounceIn');
     $('#hidden-save-button').addClass('visible animated bounceIn');
-
-
   }
 
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
-    console.log($scope.config);
-
 
     // create variables from $scope.cofig names
     var person1 = $scope.config[0].$value;
     var person2 = $scope.config[1].$value;
-    console.log('person1', person1);
 
-    $scope.items = Items;
-    console.log($scope.items);
+
+
+    // add to reciept database
     $scope.items.$add({
       costPerson1: $scope.person1,
       costPerson2: $scope.person2,
@@ -77,54 +72,227 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       namePerson2: person2,
       'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
-      'whoPayed': $scope.data.singleSelect
+      'whoPayed': $scope.data.singleSelect,
+      'category': $scope.category.name
     })
-  }
 
+    // create variable for who db
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+
+    /*
+    * logic for updating who-owes-who db depending on person1 or person2 payed
+    */
+    // If person1 payed
+    if ($scope.data.singleSelect == 'person1') {
+      // if the value is not zero = append
+      if ($scope.who[1].$value != 0) {
+        tempValue = $scope.who[1].$value; // create temp-value from person 2
+        whoRef.update({
+          person2owesperson1: $scope.person2 + tempValue
+        });
+      } else {
+        whoRef.update({
+          person2owesperson1 : $scope.person2
+        })
+      }
+
+    }
+    // if person 2 payed
+    if ($scope.data.singleSelect == 'person2') {
+      // if value is not zero = append
+      if ($scope.who[0].$value != 0) {
+        tempValue = $scope.who[0].$value;
+        whoRef.update({
+          person1owesperson2: $scope.person1 + tempValue
+        });
+        } else {
+          whoRef.update({
+            person1owesperson2: $scope.person1
+          })
+        }
+
+    }
+
+
+  }
 })
 
 // controller for the database
-.controller('databaseCtrl', function($scope, $http, Items, Config) {
+.controller('databaseCtrl', function($scope, $http, Items, Config, WhoOwesWho) {
   console.log('databaseCtrl working');
 
+  // set up scope variables from factories
   $scope.config = Config
-
   $scope.items = Items;
-  console.log($scope.items);
+  $scope.who = WhoOwesWho;
+
+
 
   // function to mark a object as done
   $scope.markDone = function(object) {
     console.log('marking item done with id', object);
+
+    // get whoRef
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+
+    // set object to done
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.update({
       done: true
     });
+
+    // varaibles for cost for person1 and person2
+    var person1Cost = 0;
+    var person2Cost = 0;
+    var whoPayed = '';
+
+    // get snapshot once
+    itemRef.once("value", function(snapshot) {
+      // change the variables with data from the snapshot
+      person1Cost = snapshot.val().costPerson1;
+      person2Cost = snapshot.val().costPerson2;
+      whoPayed = snapshot.val().whoPayed;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+
+    // update who owes who values
+    if (whoPayed == 'person1') {
+      tempValue = $scope.who[1].$value; // create temp-value from person 2
+      whoRef.update({
+        person2owesperson1: tempValue - person2Cost
+      })
+    }
+
+    if (whoPayed == 'person2') {
+      tempValue = $scope.who[0].$value;
+      whoRef.update({
+        person1owesperson2: tempValue - person1Cost
+      })
+    }
+
+
   }
 
   // function to mark a object as undone
   $scope.markUnDone = function(object) {
-    console.log('mark undone');
+    console.log('marking item undone with id', object);
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.update({
       done: false
     });
+
+    // get whoRef
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+
+    // varaibles for cost for person1 and person2
+    var person1Cost = 0;
+    var person2Cost = 0;
+    var whoPayed = '';
+
+    // get snapshot once
+    itemRef.once("value", function(snapshot) {
+      // change the variables with data from the snapshot
+      person1Cost = snapshot.val().costPerson1;
+      person2Cost = snapshot.val().costPerson2;
+      whoPayed = snapshot.val().whoPayed;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+
+
+    // update who owes who values
+    if (whoPayed == 'person1') {
+      tempValue = $scope.who[1].$value; // create temp-value from person 2
+      whoRef.update({
+        person2owesperson1: tempValue + person2Cost
+      })
+    }
+
+    if (whoPayed == 'person2') {
+      tempValue = $scope.who[0].$value;
+      whoRef.update({
+        person1owesperson2: tempValue + person1Cost
+      })
+    }
+
   }
 
   // function to delete single entry in db
   $scope.remove = function(object) {
     console.log('deleting item with it', object);
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
+
+    // get whoRef
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+
+    // varaibles for cost for person1 and person2
+    var person1Cost = 0;
+    var person2Cost = 0;
+    var whoPayed = '';
+
+    // get snapshot once
+    itemRef.once("value", function(snapshot) {
+      // change the variables with data from the snapshot
+      person1Cost = snapshot.val().costPerson1;
+      person2Cost = snapshot.val().costPerson2;
+      whoPayed = snapshot.val().whoPayed;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    console.log('caroline kost utanför', person1Cost);
+    console.log('betalade gjorde ' + whoPayed);
+
+    // update who owes who values
+    if (whoPayed == 'person1') {
+      tempValue = $scope.who[1].$value; // create temp-value from person 2
+      if (tempValue != 0) {
+        whoRef.update({
+          person2owesperson1: tempValue - person2Cost
+        })
+      } else {
+        whoRef.update({
+          person2owesperson1: 0
+        })
+      }
+
+    }
+
+    if (whoPayed == 'person2') {
+      tempValue = $scope.who[0].$value;
+      if (tempValue != 0) {
+        whoRef.update({
+          person1owesperson2: tempValue - person1Cost
+        })
+      } else {
+        whoRef.update({
+          person1owesperson2: 0
+        })
+      }
+
+    }
+
+    // finally remove the item from db
     itemRef.remove();
+
+
+
   }
 })
 
-// controller for the database
-.controller('notFinishedCtrl', function($scope, $http, Items, Config) {
+// controller for the not finished page
+.controller('notFinishedCtrl', function($scope, $http, Items, Config, WhoOwesWho) {
   console.log('notFinishedCtrl working');
 
+  // set up scope variables
   $scope.notFinished = Items;
   $scope.config = Config;
-
+  $scope.who = WhoOwesWho;
+  $scope.totalPerson1 = 0;
+  $scope.totalPerson2 = 0;
 
   // function to mark a object as done
   $scope.markDone = function(object) {
@@ -133,12 +301,49 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.update({
       done: true
     });
+
+    // get whoRef
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+
+    // varaibles for cost for person1 and person2
+    var person1Cost = 0;
+    var person2Cost = 0;
+    var whoPayed = '';
+
+    // get snapshot once
+    itemRef.once("value", function(snapshot) {
+      // change the variables with data from the snapshot
+      person1Cost = snapshot.val().costPerson1;
+      person2Cost = snapshot.val().costPerson2;
+      whoPayed = snapshot.val().whoPayed;
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    console.log('caroline kost utanför', person1Cost);
+    console.log('betalade gjorde ' + whoPayed);
+
+    // update who owes who values
+    if (whoPayed == 'person1') {
+      tempValue = $scope.who[1].$value; // create temp-value from person 2
+      whoRef.update({
+        person2owesperson1: tempValue - person2Cost
+      })
+    }
+
+    if (whoPayed == 'person2') {
+      tempValue = $scope.who[0].$value;
+      whoRef.update({
+        person1owesperson2: tempValue - person1Cost
+      })
+    }
+
   }
 
 })
 
-// controller for settings page, mostly handling of names for persons.
-.controller('settingsCtrl', function($scope, $http, Config) {
+// controller for settings page.
+.controller('settingsCtrl', function($scope, $http, Config, WhoOwesWho) {
   console.log('controller working');
   $scope.config = Config;
   console.log($scope.config);
@@ -149,7 +354,8 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.set({
       config: {
         'person1': 'Jane Doe',
-        'person2': 'John Doe'
+        'person2': 'John Doe',
+        'qhasInit': true
       }
     })
   }
@@ -161,6 +367,16 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       'person1': $scope.person_newNamePerson1,
       'person2': $scope.person_newNamePerson2
     });
+  }
+
+  $scope.resetOwes = function() {
+    console.log('click click');
+    // create variable for who db
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+    whoRef.update({
+      'person1owesperson2': 0,
+      'person2owesperson1': 0,
+    })
   }
 
 })
