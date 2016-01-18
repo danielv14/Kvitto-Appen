@@ -3,7 +3,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
 .controller('calculateCtrl', function($scope, $http, Config, Items, WhoOwesWho) {
   console.log('calculateCtrl working!');
-
   // set scope variable as factory variable
   $scope.items = Items;
   $scope.config = Config;
@@ -56,8 +55,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     $('#hidden-person1-card').addClass('visible animated bounceIn');
     $('#hidden-person2-card').addClass('visible animated bounceIn');
     $('#hidden-save-button').addClass('visible animated bounceIn');
-
-
   }
 
   // function to save values to db
@@ -68,8 +65,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     var person1 = $scope.config[0].$value;
     var person2 = $scope.config[1].$value;
 
-    // set scope variable as factory variable
-    $scope.items = Items;
+
 
     // add to reciept database
     $scope.items.$add({
@@ -132,7 +128,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   $scope.clearLocalstorage = function() {
     localStorage.removeItem("person1owsperson2");
     localStorage.removeItem("person2owsperson1");
-
 
   }
 
