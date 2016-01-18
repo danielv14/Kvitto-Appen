@@ -4,14 +4,14 @@
     <div class="list">
       <div class="item item-divider">Betalade av {{config[0].$value}}</div>
       <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item item-icon-left"><i ng-if="item.category == 'food'"class="icon ion-fork"></i><i ng-if="item.category == 'other'" class="icon ion-bag"></i><i ng-if="item.category == 'pleasure'" class="icon ion-ios-star-outline"></i>
-        <p>{{item.namePerson2}} skyldig {{item.costPerson2}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></span></p>
+        <p>{{item.namePerson2}} skyldig {{item.costPerson2}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span>{{item.createdAt | amCalendar}}</span></p>
       </a>
       <li class="item">{{config[1].$value}} är skyldig totalt {{who[1].$value}} kr</li>
 
 
       <div class="item item-divider">Betalade av {{config[1].$value}}</div>
       <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item item-icon-left"><i ng-if="item.category == 'food'"class="icon ion-fork"></i><i ng-if="item.category == 'other'" class="icon ion-bag"></i><i ng-if="item.category == 'pleasure'" class="icon ion-ios-star-outline"></i>
-        <p>{{item.namePerson1}} skyldig {{item.costPerson1}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></p>
+        <p>{{item.namePerson1}} skyldig {{item.costPerson1}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span>{{item.createdAt | amCalendar}}</span></p>
       </a>
       <li class="item">{{config[0].$value}} är skyldig totalt {{who[0].$value}} kr</li>
 
