@@ -41,7 +41,7 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     url: '/calculate',
     views: {
       'tab-calculate': {
-        templateUrl: 'templates/calculate.html'
+        templateUrl: 'templates/calculate.html',
 
       }
     }
@@ -63,7 +63,6 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     views: {
       'tab-notfinished': {
         templateUrl: 'templates/notFinished.html',
-        controller: 'notFinishedCtrl'
       }
     }
 
@@ -73,7 +72,8 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     url: '/settings',
     views: {
       'tab-settings': {
-        templateUrl: 'templates/settings.html'
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
       }
     }
 
