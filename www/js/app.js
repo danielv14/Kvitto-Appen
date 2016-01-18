@@ -25,6 +25,7 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
   });
 })
 
+
 .config(function($stateProvider, $urlRouterProvider) {
 
 
