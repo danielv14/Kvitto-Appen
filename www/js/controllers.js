@@ -142,7 +142,8 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.set({
       config: {
         'person1': 'Jane Doe',
-        'person2': 'John Doe'
+        'person2': 'John Doe',
+        'qhasInit': true
       }
     })
   }
