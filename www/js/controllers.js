@@ -78,9 +78,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       'whoPayed': $scope.data.singleSelect
     })
 
-    // set localstorage if person 1 payed which means person 2 ows person 1
-    if ($scope.data.singleSelect == 'person1') {
-      console.log('person 1 payed');
     // create variable for who db
     var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
 
@@ -119,18 +116,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     }
 
 
-    // log localstorage
-    console.log('caroline är skyldig:' + localStorage.person1owsperson2);
-    console.log('daniel är skyldig:' + localStorage.person2owsperson1)
-
   }
-
-  $scope.clearLocalstorage = function() {
-    localStorage.removeItem("person1owsperson2");
-    localStorage.removeItem("person2owsperson1");
-
-  }
-
 })
 
 // controller for the database
@@ -149,15 +135,21 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.update({
       done: true
     });
+
+
+
   }
 
   // function to mark a object as undone
   $scope.markUnDone = function(object) {
-    console.log('mark undone');
+    console.log('**************undone********************');
+    console.log('marking item undone with id', object);
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.update({
       done: false
     });
+
+
   }
 
   // function to delete single entry in db
@@ -165,15 +157,21 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     console.log('deleting item with it', object);
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
     itemRef.remove();
+
   }
 })
 
 // controller for the not finished page
+.controller('notFinishedCtrl', function($scope, $http, Items, Config, WhoOwesWho) {
   console.log('notFinishedCtrl working');
 
   // set up scope variables
   $scope.notFinished = Items;
   $scope.config = Config;
+  $scope.who = WhoOwesWho;
+  $scope.totalPerson1 = 0;
+  $scope.totalPerson2 = 0;
+
 
 
   // function to mark a object as done
@@ -183,11 +181,13 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     itemRef.update({
       done: true
     });
+
+
   }
 
 })
 
-// controller for settings page, mostly handling of names for persons.
+// controller for settings page.
 .controller('settingsCtrl', function($scope, $http, Config, WhoOwesWho) {
   console.log('controller working');
   $scope.config = Config;
