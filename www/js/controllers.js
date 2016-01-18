@@ -362,10 +362,12 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
   // function to update names
   $scope.updateNames = function() {
+    console.log($scope.newNamePerson1);
+    console.log($scope.newNamePerson2);
     var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
     itemRef.update({
-      'person1': $scope.person_newNamePerson1,
-      'person2': $scope.person_newNamePerson2
+      'person1': $scope.newNamePerson1,
+      'person2': $scope.newNamePerson2
     });
   }
 
