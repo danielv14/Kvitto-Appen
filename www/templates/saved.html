@@ -7,7 +7,7 @@
         <p>{{config[0].$value}}: {{item.costPerson1}} kr</p>
         <p>{{config[1].$value}}: {{item.costPerson2}} kr</p>
         <p>Total: {{item.costPerson1 + item.costPerson2}} kr</p>
-        <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
+        <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span> | <i ng-if="item.category == 'food'"class="ion-fork"></i><i ng-if="item.category == 'other'" class=" ion-ios-cart"></i></p>
         <button ng-click="remove(item.$id)" class="button button-outline button-assertive">Ta bort</button>
       </li>
     </div>

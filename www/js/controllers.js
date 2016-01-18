@@ -72,7 +72,8 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       namePerson2: person2,
       'createdAt': Firebase.ServerValue.TIMESTAMP,
       'done': false,
-      'whoPayed': $scope.data.singleSelect
+      'whoPayed': $scope.data.singleSelect,
+      'category': $scope.category.name
     })
 
     // create variable for who db

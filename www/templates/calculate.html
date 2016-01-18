@@ -25,6 +25,12 @@
           </select>
         </label>
 
+
+        <ion-list name="category" ng-model"data.category">
+          <ion-radio ng-model="category.name" value="food">Mat</ion-radio>
+          <ion-radio ng-model="category.name" value="other">Övrigt</ion-radio>
+        </ion-list>
+
         <div class="row text-center">
         <div class="col-50">
           <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
@@ -35,8 +41,6 @@
       </div>
 
     </div>
-    <p>Caroline är skyldig Daniel {{who[0].$value}} kr</p>
-    <p>Daniel är skyldig Caroline {{who[1].$value}} kr</p>
 
     <!-- Cards -->
     <div class="card hidden" id="hidden-person1-card">
