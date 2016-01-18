@@ -63,7 +63,10 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
     var person1 = $scope.config[0].$value;
     var person2 = $scope.config[1].$value;
 
+    // set scope variable as factory variable
     $scope.items = Items;
+
+    // add to reciept database
     $scope.items.$add({
       costPerson1: $scope.person1,
       costPerson2: $scope.person2,
@@ -149,6 +152,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 // controller for the not finished page
   console.log('notFinishedCtrl working');
 
+  // set up scope variables
   $scope.notFinished = Items;
   $scope.config = Config;
 
