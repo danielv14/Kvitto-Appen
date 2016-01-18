@@ -4,7 +4,9 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularMoment'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, amMoment) {
+
+  amMoment.changeLocale('sv');
 
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
