@@ -10,8 +10,6 @@
         </a>
       </div>
 
-      <hr>
-
       <h4 class="text-center">{{config[1].$value}} betalade</h4>
       <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" class="list card">
         <a ng-click="markDone(item.$id)" class="item item-icon-left">
@@ -23,5 +21,4 @@
 
 
   </ion-content>
-
 </ion-view>
