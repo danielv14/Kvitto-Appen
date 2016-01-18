@@ -1,28 +1,21 @@
 <ion-view view-title="Ofärdiga kvitton">
   <ion-content>
 
-      <h4 class="text-center">Betalade av {{config[0].$value}}</h4>
-      <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" class="list card">
-        <a ng-click="markDone(item.$id)" class="item item-icon-left">
-          <i class="icon ion-ios-checkmark-outline"></i>
-          <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
-          <p>{{item.namePerson2}} är skyldig {{item.costPerson2}} kr</p>
-        </a>
-      </div>
-      <p class="text-center">{{config[1].$value}} är totalt skyldig {{who[1].$value}} kr</p>
-
-      <hr>
-      <h4 class="text-center">Betalade av {{config[1].$value}}</h4>
-      <div ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" class="list card">
-        <a ng-click="markDone(item.$id)" class="item item-icon-left">
-          <i class="icon ion-ios-checkmark-outline"></i>
-          <p><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></p>
-          <p>{{item.namePerson1}} är skyldig {{item.costPerson1}} kr</p>
-        </a>
-      </div>
-      <p class="text-center">{{config[0].$value}} är totalt skyldig {{who[0].$value}} kr</p>
+    <div class="list">
+      <div class="item item-divider">Betalade av {{config[0].$value}}</div>
+      <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item">
+        <p>{{item.namePerson2}} är skyldig {{item.costPerson2}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></span></p>
+      </a>
+      <li class="item">{{config[1].$value}} är skyldig totalt {{who[1].$value}} kr</li>
 
 
+      <div class="item item-divider">Betalade av {{config[1].$value}}</div>
+      <a ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'" ng-click="markDone(item.$id)" class="item">
+        <p>{{item.namePerson1}} är skyldig {{item.costPerson1}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span am-time-ago="item.createdAt"></span></p>
+      </a>
+      <li class="item">{{config[0].$value}} är skyldig totalt {{who[0].$value}} kr</li>
+
+    </div>
 
   </ion-content>
 </ion-view>
