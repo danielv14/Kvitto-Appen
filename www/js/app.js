@@ -92,3 +92,9 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
   var itemsRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/config");
   return $firebaseArray(itemsRef);
 })
+
+// factory for connecting to firebase db who-owns-who
+.factory("WhoOwesWho", function($firebaseArray) {
+  var itemsRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/who-owes-who");
+  return $firebaseArray(itemsRef);
+})
