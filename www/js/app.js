@@ -87,7 +87,7 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
   return $firebaseArray(itemsRef);
 })
 
-// factory for connecting to firebase db receipt
+// factory for connecting to firebase db config
 .factory("Config", function($firebaseArray) {
   var itemsRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/config");
   return $firebaseArray(itemsRef);
