@@ -6,8 +6,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
   $scope.config = Config;
 
-  // set predefined option for who payed
-  // $scope.selectedOption = $scope.config[1];
 
   // Declare global variables
   var person2_round, person1_round, person2_round_percent, person1_round_percent;
@@ -60,16 +58,12 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   // function to save values to db
   $scope.save = function() {
     console.log('saving');
-    console.log($scope.config);
-
 
     // create variables from $scope.cofig names
     var person1 = $scope.config[0].$value;
     var person2 = $scope.config[1].$value;
-    console.log('person1', person1);
 
     $scope.items = Items;
-    console.log($scope.items);
     $scope.items.$add({
       costPerson1: $scope.person1,
       costPerson2: $scope.person2,
@@ -118,8 +112,7 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
   }
 })
 
-// controller for the database
-.controller('notFinishedCtrl', function($scope, $http, Items, Config) {
+// controller for the not finished page
   console.log('notFinishedCtrl working');
 
   $scope.notFinished = Items;
