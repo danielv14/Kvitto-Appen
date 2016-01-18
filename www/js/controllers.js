@@ -73,6 +73,40 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
       'done': false,
       'whoPayed': $scope.data.singleSelect
     })
+
+    // set localstorage if person 1 payed which means person 2 ows person 1
+    if ($scope.data.singleSelect == 'person1') {
+      console.log('person 1 payed');
+
+      if (localStorage.person2owsperson1) {
+      localStorage.person2owsperson1 = Number(localStorage.person2owsperson1) + $scope.person2;
+      } else {
+          localStorage.person2owsperson1 = $scope.person2;
+      }
+    }
+
+    // set localstorage if person 2 payed which means person1 ows person 2
+    if ($scope.data.singleSelect == 'person2') {
+      console.log('person 2 payed');
+      if (localStorage.person1owsperson2) {
+      localStorage.person1owsperson2 = Number(localStorage.person1owsperson2) + $scope.person1;
+      } else {
+          localStorage.person1owsperson2 = $scope.person1;
+      }
+    }
+
+
+    // log localstorage
+    console.log('caroline är skyldig:' + localStorage.person1owsperson2);
+    console.log('daniel är skyldig:' + localStorage.person2owsperson1)
+
+  }
+
+  $scope.clearLocalstorage = function() {
+    localStorage.removeItem("person1owsperson2");
+    localStorage.removeItem("person2owsperson1");
+
+
   }
 
 })
