@@ -1,12 +1,25 @@
 // controller for the database
-app.controller('databaseCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', function($scope, $http, Items, Config, WhoOwesWho) {
+app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho) {
   console.log('databaseCtrl working');
 
   // set up scope variables from factories
   $scope.config = Config
-  $scope.items = Items;
   $scope.who = WhoOwesWho;
 
+  // create a connection to Firebase
+  var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
+  // create a scrollable reference
+  var scrollRef = new Firebase.util.Scroll(baseRef, 'createdAt');
+
+  $scope.items = $firebaseArray(scrollRef);
+  scrollRef.scroll.next(5);
+
+  // This function is called whenever the user reaches the bottom
+  $scope.loadMore = function() {
+    // load the next contact
+    scrollRef.scroll.next(2);
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  };
 
   // function to mark a object as done
   $scope.markDone = function(object) {
