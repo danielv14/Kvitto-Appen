@@ -113,7 +113,6 @@ angular.module('app.controllers', ['firebase', 'angularMoment'])
 
     }
 
-
   }
 })
 
