@@ -35,9 +35,6 @@ app.controller('notFinishedCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwes
       console.log("The read failed: " + errorObject.code);
     });
 
-    console.log('caroline kost utanför', person1Cost);
-    console.log('betalade gjorde ' + whoPayed);
-
     // update who owes who values
     if (whoPayed == 'person1') {
       tempValue = $scope.who[1].$value; // create temp-value from person 2
