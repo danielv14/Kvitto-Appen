@@ -2,9 +2,11 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
+var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularMoment'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, amMoment) {
+
+  amMoment.changeLocale('sv');
 
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -23,6 +25,7 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
   });
 })
 
+
 .config(function($stateProvider, $urlRouterProvider) {
 
 
@@ -39,7 +42,7 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
     url: '/calculate',
     views: {
       'tab-calculate': {
-        templateUrl: 'templates/calculate.html'
+        templateUrl: 'templates/calculate.html',
 
       }
     }
@@ -61,7 +64,6 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
     views: {
       'tab-notfinished': {
         templateUrl: 'templates/notFinished.html',
-        controller: 'notFinishedCtrl'
       }
     }
 
@@ -71,7 +73,8 @@ angular.module('app', ['ionic', 'app.controllers', 'angularMoment'])
     url: '/settings',
     views: {
       'tab-settings': {
-        templateUrl: 'templates/settings.html'
+        templateUrl: 'templates/settings.html',
+        controller: 'settingsCtrl'
       }
     }
 
