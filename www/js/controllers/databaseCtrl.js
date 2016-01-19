@@ -144,6 +144,7 @@ app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Co
     // update who owes who values
     if (whoPayed == 'person1') {
       tempValue = $scope.who[1].$value; // create temp-value from person 2
+      // if the value is not zero
       if (tempValue != 0) {
         whoRef.update({
           person2owesperson1: tempValue - person2Cost
@@ -155,9 +156,10 @@ app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Co
       }
 
     }
-
+    // if person2 payed
     if (whoPayed == 'person2') {
       tempValue = $scope.who[0].$value;
+      // if the value is not zero
       if (tempValue != 0) {
         whoRef.update({
           person1owesperson2: tempValue - person1Cost
