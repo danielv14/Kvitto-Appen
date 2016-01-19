@@ -11,12 +11,14 @@ app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Co
   // create a scrollable reference
   var scrollRef = new Firebase.util.Scroll(baseRef, 'createdAt');
 
+  // set scope as the scroll ref
   $scope.items = $firebaseArray(scrollRef);
+  // set 5 items to display at first
   scrollRef.scroll.next(5);
 
   // This function is called whenever the user reaches the bottom
   $scope.loadMore = function() {
-    // load the next contact
+    // load the items
     scrollRef.scroll.next(2);
     $scope.$broadcast('scroll.infiniteScrollComplete');
   };
