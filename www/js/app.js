@@ -6,6 +6,7 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
 
 .run(function($ionicPlatform, amMoment) {
 
+  // set moment.js to swedish
   amMoment.changeLocale('sv');
 
   $ionicPlatform.ready(function() {
