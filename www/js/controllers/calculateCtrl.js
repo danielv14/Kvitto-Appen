@@ -1,6 +1,5 @@
 app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', function($scope, $http, Config, Items, WhoOwesWho) {
-    console.log('calculateCtrl working!');
-    // set scope variable as factory variable
+    // set scope variable from factories
     $scope.items = Items;
     $scope.config = Config;
     $scope.who = WhoOwesWho;
@@ -58,8 +57,6 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
       // create variables from $scope.cofig names
       var person1 = $scope.config[0].$value;
       var person2 = $scope.config[1].$value;
-
-
 
       // add to reciept database
       $scope.items.$add({
