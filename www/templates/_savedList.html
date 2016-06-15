@@ -1,0 +1,29 @@
+<!--
+  Partial file for looping through receipts in a list
+ -->
+
+<!-- display different icons on the left depending on if the receipt is payed or not -->
+<i ng-if="item.done == false" ng-click="markDone(item.$id)" class="icon ion-ios-circle-outline assertive"></i>
+<i ng-if="item.done == true" ng-click="markUnDone(item.$id)" class="icon ion-ios-checkmark-outline balanced"></i>
+<!-- Display title depending on who payed -->
+<h2 ng-if="item.whoPayed == 'person1'">
+  {{config[0].$value}} betalade {{item.costPerson1 + item.costPerson2}} kr
+</h2>
+<h2 ng-if="item.whoPayed == 'person2'">
+  {{config[1].$value}} betalade {{item.costPerson1 + item.costPerson2}} kr
+</h2>
+<!-- Display cost for each person -->
+<p>{{config[0].$value}}: {{item.costPerson1}} kr</p>
+<p>{{config[1].$value}}: {{item.costPerson2}} kr</p>
+
+<!-- Display various info about the receipt -->
+<p>
+  <i class="ion-ios-clock-outline"></i>
+  <span>{{item.createdAt | amCalendar}}</span> |
+  <i ng-if="item.category == 'food'" class="ion-fork"></i>
+  <i ng-if="item.category == 'other'" class="ion-bag"></i>
+  <i ng-if="item.category == 'pleasure'" class="ion-ios-star-outline"></i>
+</p>
+
+<!-- Icon to delete receipt from firebase db -->
+<i ng-click="remove(item.$id)" class="icon ion-trash-b"></i>
