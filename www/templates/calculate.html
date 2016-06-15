@@ -2,46 +2,53 @@
   <ion-content ng-controller="calculateCtrl">
 
     <div>
-      <div class="list" id="calculator">
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Totalt</span>
-          <input type="number" ng-model="amount" placeholder="Totalt">
-        </label>
-        <label class="item item-input item-floating-label">
-          <span class="input-label">{{config[0].$value}}</span>
-          <input type="number" ng-model="person1" placeholder="{{config[0].$value}}">
-        </label>
-        <label class="item item-input item-floating-label">
-          <span class="input-label">{{config[1].$value}}</span>
-          <input type="number" ng-model="person2" placeholder="{{config[1].$value}}">
-        </label>
-        <label class="item item-input item-select">
-          <div class="input-label">
-            Vem betalade?
+      <form name="myForm" novalidate>
+        <div class="list" id="calculator">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Totalt</span>
+            <input type="number" ng-model="amount" placeholder="Totalt" required>
+          </label>
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">{{config[0].$value}}</span>
+            <input type="number" ng-model="person1" placeholder="{{config[0].$value}}" required>
+          </label>
+
+          <label class="item item-input item-floating-label">
+            <span class="input-label">{{config[1].$value}}</span>
+            <input type="number" ng-model="person2" placeholder="{{config[1].$value}}" required>
+          </label>
+
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Vem betalade?
+            </div>
+            <select name="singleSelect" ng-model="data.singleSelect" required>
+              <option value="person1">{{config[0].$value}}</option>
+              <option value="person2">{{config[1].$value}}</option>
+            </select>
+          </label>
+
+
+          <ion-list name="category" ng-model"data.category">
+            <ion-radio ng-model="category.name" value="food" ng-required="true">Mat <i class="ion-fork"></i></ion-radio>
+            <ion-radio ng-model="category.name" value="pleasure" ng-required="true">Nöje <i class="ion-ios-star-outline"></i></ion-radio>
+            <ion-radio ng-model="category.name" value="other" ng-required="true">Övrigt <i class="ion-bag"></i></ion-radio>
+          </ion-list>
+
+          <div class="row text-center">
+            <div class="col-50">
+              <button class="button button-block button-calm ion-ios-calculator" ng-disabled="myForm.$invalid" ng-click='calculate()' id="calculate"> Räkna ut</button>
+            </div>
+            <div class="col-50 padding-left">
+              <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+            </div>
           </div>
-          <select name="singleSelect" ng-model="data.singleSelect">
-            <option value="person1">{{config[0].$value}}</option>
-            <option value="person2">{{config[1].$value}}</option>
-          </select>
-        </label>
 
-
-        <ion-list name="category" ng-model"data.category">
-          <ion-radio ng-model="category.name" value="food">Mat <i class="ion-fork"></i></ion-radio>
-          <ion-radio ng-model="category.name" value="pleasure">Nöje <i class="ion-ios-star-outline"></i></ion-radio>
-          <ion-radio ng-model="category.name" value="other">Övrigt <i class="ion-bag"></i></ion-radio>
-        </ion-list>
-
-        <div class="row text-center">
-        <div class="col-50">
-          <button class="button button-block button-calm ion-ios-calculator" ng-click='calculate()' id="calculate"> Räkna ut</button>
         </div>
-        <div class="col-50 padding-left">
-          <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
-        </div>
-      </div>
 
-    </div>
+      </form>
+
 
     <!-- Cards -->
     <div class="card hidden" id="hidden-person1-card">
