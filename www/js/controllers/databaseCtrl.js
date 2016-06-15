@@ -8,13 +8,18 @@ app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Co
 
   // create a connection to Firebase
   var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
+
   // create a scrollable reference
   var scrollRef = new Firebase.util.Scroll(baseRef, 'createdAt');
 
   // set scope as the scroll ref
   $scope.items = $firebaseArray(scrollRef);
+
   // set 5 items to display at first
   scrollRef.scroll.next(5);
+
+  $scope.items_unpayed = Items;
+  console.log($scope.items_unpayed);
 
   // This function is called whenever the user reaches the bottom
   $scope.loadMore = function() {
