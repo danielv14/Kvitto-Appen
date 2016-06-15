@@ -1,5 +1,5 @@
 // controller for the not finished page
-app.controller('notFinishedCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', function($scope, $http, Items, Config, WhoOwesWho) {
+app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', function($scope, $http, Items, Config, WhoOwesWho) {
 
   // set up scope variables
   $scope.notFinished = Items;

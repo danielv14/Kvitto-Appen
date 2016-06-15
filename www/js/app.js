@@ -61,10 +61,10 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
   })
 
   .state('tab.notFinished', {
-    url: '/notfinished',
+    url: '/unpaid',
     views: {
-      'tab-notfinished': {
-        templateUrl: 'templates/notFinished.html',
+      'tab-unpaid': {
+        templateUrl: 'templates/unpaid.html',
       }
     }
 
