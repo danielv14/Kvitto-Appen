@@ -1,6 +1,5 @@
 // controller for the database
 app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho) {
-  console.log('databaseCtrl working');
 
   // set up scope variables from factories
   $scope.config = Config
