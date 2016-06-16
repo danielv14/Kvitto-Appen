@@ -54,7 +54,7 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     views: {
       'tab-saved': {
         templateUrl: 'templates/saved.html',
-        controller: 'databaseCtrl'
+        controller: 'savedCtrl'
       }
     }
 

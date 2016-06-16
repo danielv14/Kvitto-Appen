@@ -1,5 +1,6 @@
 // controller for the database
-app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho) {
+app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho) {
+
 
   // set up scope variables from factories
   $scope.config = Config
@@ -17,8 +18,26 @@ app.controller('databaseCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Co
   // set 5 items to display at first
   scrollRef.scroll.next(5);
 
-  $scope.items_unpayed = Items;
-  console.log($scope.items_unpayed);
+  $scope.items_unpaid = Items;
+  // open up a new connection to receipts section in db
+  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
+
+
+  qRef.on("value", function(snapshot) {
+    var unpaidCount = 0;
+    // loop through each snapshot
+    snapshot.forEach(function(receipt) {
+      // if receipt is not done, iterate count
+      if (!receipt.child('done').val()) {
+        unpaidCount += 1
+      }
+    })
+    // attach unpaid count to scope
+    $scope.unpaidReceiptCount = unpaidCount;
+    console.log($scope.unpaidReceiptCount);
+
+  });
+
 
   // This function is called whenever the user reaches the bottom
   $scope.loadMore = function() {

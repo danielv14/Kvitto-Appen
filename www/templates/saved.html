@@ -3,13 +3,16 @@
 
     <div class="list">
 
-      <!-- Unpayed receipts -->
-      <div class="item item-divider">Obetalda</div>
-      <!-- repeat all the items by filiter and order them -->
-      <li class="item item-icon-left item-icon-right"
-          ng-include src="'templates/_savedList.html'"
-          ng-repeat="item in items_unpayed | filter:{done:false} | orderBy:'-createdAt'">
-      </li>
+
+      <!-- only show unpaid if there are any-->
+      <span ng-if="unpaidReceiptCount > 0">
+        <!-- Unpayed receipts -->
+        <div class="item item-divider">Obetalda</div>
+        <li class="item item-icon-left item-icon-right"
+            ng-include src="'templates/_savedList.html'"
+            ng-repeat="item in items_unpaid | filter:{done:false} | orderBy:'-createdAt'">
+        </li>
+      </span>
 
       <!-- Payed receipts -->
       <div class="item item-divider">Betalda</div>
