@@ -7,6 +7,9 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
     // Declare global variables
     var person2_round, person1_round, person2_round_percent, person1_round_percent;
 
+    // variable to determine if save-button can be clicked or not
+    $scope.preventSave = true;
+
     // calculate click button
     $scope.calculate = function() {
 
@@ -48,6 +51,9 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
       $('#hidden-person1-card').addClass('visible animated bounceIn');
       $('#hidden-person2-card').addClass('visible animated bounceIn');
       $('#hidden-save-button').addClass('visible animated bounceIn');
+
+      // make save button clickable
+      $scope.preventSave = false;
     }
 
     // function to save values to db

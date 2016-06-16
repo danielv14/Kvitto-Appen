@@ -2,7 +2,7 @@
   <ion-content ng-controller="calculateCtrl">
 
     <div>
-      <form name="myForm" novalidate>
+      <form name="calculateForm" novalidate>
         <div class="list" id="calculator">
           <label class="item item-input item-floating-label">
             <span class="input-label">Totalt</span>
@@ -38,10 +38,15 @@
 
           <div class="row text-center">
             <div class="col-50">
-              <button class="button button-block button-calm ion-ios-calculator" ng-disabled="myForm.$invalid" ng-click='calculate()' id="calculate"> Räkna ut</button>
+              <button class="button button-block button-calm ion-ios-calculator"
+                      ng-disabled="calculateForm.$invalid"
+                      ng-click='calculate()'
+                      id="calculate"> Räkna ut</button>
             </div>
             <div class="col-50 padding-left">
-              <button class="button button-block button-balanced ion-android-bookmark hidden" ng-click='save()' id="hidden-save-button"> Spara</button>
+              <button class="button button-block button-balanced ion-android-bookmark"
+                      ng-disabled="preventSave"
+                      ng-click='save()'> Spara</button>
             </div>
           </div>
 
@@ -51,14 +56,7 @@
 
 
     <!-- Cards -->
-    <!-- <div class="card hidden" id="hidden-person1-card">
-      <div class="item item-text-wrap">
-        <h2>{{config[0].$value}}</h2>
-        <p>{{config[0].$value}} handlade för {{person1}} kr.</p>
-        <p>Detta är {{person1_percent}}% av köpet.</p>
-      </div>
-    </div> -->
-    <div class="card hidden" id="hidden-person1-card">
+    <div class="card">
       <div class="item item-divider item-royal">
         {{config[0].$value}}
       </div>
@@ -68,7 +66,7 @@
       </div>
     </div>
 
-    <div class="card hidden" id="hidden-person2-card">
+    <div class="card">
       <div class="item item-divider item-energized">
         {{config[1].$value}}
       </div>
