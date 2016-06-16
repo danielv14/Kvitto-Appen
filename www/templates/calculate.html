@@ -51,21 +51,35 @@
 
 
     <!-- Cards -->
-    <div class="card hidden" id="hidden-person1-card">
+    <!-- <div class="card hidden" id="hidden-person1-card">
       <div class="item item-text-wrap">
         <h2>{{config[0].$value}}</h2>
+        <p>{{config[0].$value}} handlade för {{person1}} kr.</p>
+        <p>Detta är {{person1_percent}}% av köpet.</p>
+      </div>
+    </div> -->
+    <div class="card hidden" id="hidden-person1-card">
+      <div class="item item-divider item-royal">
+        {{config[0].$value}}
+      </div>
+      <div class="item item-text-wrap">
         <p>{{config[0].$value}} handlade för {{person1}} kr.</p>
         <p>Detta är {{person1_percent}}% av köpet.</p>
       </div>
     </div>
 
     <div class="card hidden" id="hidden-person2-card">
+      <div class="item item-divider item-energized">
+        {{config[1].$value}}
+      </div>
       <div class="item item-text-wrap">
-        <h2>{{config[1].$value}}</h2>
         <p>{{config[1].$value}} handlade för {{person2}} kr.</p>
         <p>Detta är {{person2_percent}}% av köpet.</p>
       </div>
     </div>
+
+    <br>
+
 
   </ion-content>
 </ion-view>
