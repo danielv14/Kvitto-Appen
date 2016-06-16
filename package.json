@@ -1,5 +1,5 @@
 {
-  "name": "Receipt Counter",
+  "name": "Receipt-Counter",
   "version": "1.1.1",
   "engines": {
     "node": "5.2.0",
