@@ -47,11 +47,6 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
       $scope.person2 = person2_round;
       $scope.person2_percent = person2_round_percent;
 
-      // Fade-in the card
-      $('#hidden-person1-card').addClass('visible animated bounceIn');
-      $('#hidden-person2-card').addClass('visible animated bounceIn');
-      $('#hidden-save-button').addClass('visible animated bounceIn');
-
       // make save button clickable
       $scope.preventSave = false;
     }
