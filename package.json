@@ -2,7 +2,8 @@
   "name": "Receipt Counter",
   "version": "1.1.1",
   "engines": {
-    "node": "5.2.0"
+    "node": "5.2.0",
+    "npm": "3.7.5"
   },
   "description": "App to split up receipts",
   "dependencies": {
