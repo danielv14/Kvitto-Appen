@@ -1,0 +1,37 @@
+<ion-view view-title="Uträkning">
+  <ion-content>
+
+    <!-- Cards -->
+    <div class="card">
+      <div class="item item-divider">
+        {{config[0].$value}}
+      </div>
+      <div class="item item-text-wrap">
+        <p>{{config[0].$value}} handlade för {{person1}} kr.</p>
+        <p>Detta är {{person1_percent}}% av köpet.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="item item-divider">
+        {{config[1].$value}}
+      </div>
+      <div class="item item-text-wrap">
+        <p>{{config[1].$value}} handlade för {{person2}} kr.</p>
+        <p>Detta är {{person2_percent}}% av köpet.</p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-50">
+        <button class="button button-block button-padding button-balanced ion-android-bookmark"
+                ng-click='save()'
+                ui-sref="tab.calculate"> Spara
+        </button>
+      </div>
+      <br>
+
+    </div>
+
+  </ion-content>
+</ion-view>

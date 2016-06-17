@@ -9,11 +9,11 @@
 }
 
 
-.bar-header {
+.bar-header, .back-button {
    height: 60px;
 }
 
-.bar-header .title {
+.bar-header .title, .back-button {
    line-height: 60px;
 }
 

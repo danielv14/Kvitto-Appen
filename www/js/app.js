@@ -49,6 +49,16 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     }
   })
 
+  .state('tab.calculations', {
+    url: '/calculations',
+    views: {
+      'tab-calculate': {
+        templateUrl: 'templates/calculations.html',
+        controller: 'calculationsCtrl'
+      }
+    }
+  })
+
   .state('tab.saved', {
     url: '/saved',
     views: {

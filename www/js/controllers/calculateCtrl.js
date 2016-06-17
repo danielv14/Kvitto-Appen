@@ -49,64 +49,17 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
 
       // make save button clickable
       $scope.preventSave = false;
+
+      // store values to sessionStorage for person 1
+      sessionStorage.costPerson1 = person1_round;
+      sessionStorage.percentagePerson1 = person1_round_percent;
+      // store values to sessionStorage for person 2
+      sessionStorage.costPerson2 = person2_round;
+      sessionStorage.percentagePerson2 = person2_round_percent;
+      // store value to sessionStorage about who paid
+      sessionStorage.whoPaid = $scope.data.singleSelect;
+      // store value to sessionStorage about receipt category
+      sessionStorage.category = $scope.category.name;
     }
 
-    // function to save values to db
-    $scope.save = function() {
-      console.log('saving');
-
-      // create variables from $scope.cofig names
-      var person1 = $scope.config[0].$value;
-      var person2 = $scope.config[1].$value;
-
-      // add to reciept database
-      $scope.items.$add({
-        costPerson1: $scope.person1,
-        costPerson2: $scope.person2,
-        namePerson1: person1,
-        namePerson2: person2,
-        'createdAt': Firebase.ServerValue.TIMESTAMP,
-        'done': false,
-        'whoPayed': $scope.data.singleSelect,
-        'category': $scope.category.name
-      })
-
-      // create variable for who db
-      var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
-
-      /*
-      * logic for updating who-owes-who db depending on person1 or person2 payed
-      */
-      // If person1 payed
-      if ($scope.data.singleSelect == 'person1') {
-        // if the value is not zero = append
-        if ($scope.who[1].$value != 0) {
-          tempValue = $scope.who[1].$value; // create temp-value from person 2
-          whoRef.update({
-            person2owesperson1: $scope.person2 + tempValue
-          });
-        } else {
-          whoRef.update({
-            person2owesperson1 : $scope.person2
-          })
-        }
-
-      }
-      // if person 2 payed
-      if ($scope.data.singleSelect == 'person2') {
-        // if value is not zero = append
-        if ($scope.who[0].$value != 0) {
-          tempValue = $scope.who[0].$value;
-          whoRef.update({
-            person1owesperson2: $scope.person1 + tempValue
-          });
-          } else {
-            whoRef.update({
-              person1owesperson2: $scope.person1
-            })
-          }
-
-      }
-
-    }
   }])
