@@ -47,9 +47,6 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
       $scope.person2 = person2_round;
       $scope.person2_percent = person2_round_percent;
 
-      // make save button clickable
-      $scope.preventSave = false;
-
       // store values to sessionStorage for person 1
       sessionStorage.costPerson1 = person1_round;
       sessionStorage.percentagePerson1 = person1_round_percent;
