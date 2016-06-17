@@ -5,14 +5,18 @@
 
 
       <!-- only show unpaid if there are any-->
-      <span ng-if="unpaidReceiptCount > 0">
+
         <!-- Unpayed receipts -->
         <div class="item item-divider">Obetalda</div>
+        <span ng-if="unpaidReceiptCount == 0">
+          <li class="item">
+            Inga obetalda kvitton
+          </li>
+        </span>
         <li class="item item-icon-left item-icon-right"
             ng-include src="'templates/_savedList.html'"
             ng-repeat="item in items_unpaid | filter:{done:false} | orderBy:'-createdAt'">
         </li>
-      </span>
 
       <!-- Payed receipts -->
       <div class="item item-divider">Betalda</div>
