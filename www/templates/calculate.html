@@ -4,6 +4,7 @@
     <div>
       <form name="calculateForm" novalidate>
         <div class="list" id="calculator">
+          <li class="item item-divider">Kostnader</li>
           <label class="item item-input item-floating-label">
             <span class="input-label">Totalt</span>
             <input type="number" ng-model="amount" placeholder="Totalt" required>
@@ -21,7 +22,7 @@
 
           <label class="item item-input item-select">
             <div class="input-label">
-              Vem betalade?
+              Betalde gjorde...
             </div>
             <select name="singleSelect" ng-model="data.singleSelect" required>
               <option value="person1">{{config[0].$value}}</option>
