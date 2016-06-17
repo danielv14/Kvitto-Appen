@@ -4,13 +4,9 @@
   padding-top: 20px;
 }
 
-/*.nav-bar-block, .title {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}*/
 
 .bar-header {
-   height: 60px; /*just an example*/
+   height: 60px;
 }
 
 .bar-header .title {
