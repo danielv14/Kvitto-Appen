@@ -4,9 +4,21 @@
   padding-top: 20px;
 }
 
-.nav-bar-block, .title {
+/*.nav-bar-block, .title {
   padding-top: 20px;
   padding-bottom: 20px;
+}*/
+
+.bar-header {
+   height: 70px; /*just an example*/
+}
+
+.bar-header .title {
+   line-height: 70px;
+}
+
+.has-header {
+   top: 70px;
 }
 
 .padidng-left {
