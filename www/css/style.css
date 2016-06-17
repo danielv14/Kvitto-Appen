@@ -10,15 +10,15 @@
 }*/
 
 .bar-header {
-   height: 70px; /*just an example*/
+   height: 60px; /*just an example*/
 }
 
 .bar-header .title {
-   line-height: 70px;
+   line-height: 60px;
 }
 
 .has-header {
-   top: 70px;
+   top: 60px;
 }
 
 .padidng-left {
