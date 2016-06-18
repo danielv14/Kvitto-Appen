@@ -104,15 +104,10 @@ var app = angular.module('app')
     increaseDebtWithoutSessionStorageWho: function(currentDebtPerson1, currentDebtPerson2, who, costPerson1, costPerson2) {
       debt.setWhoPaidWithoutSession(who);
 
-      console.log('person1Cost', costPerson1);
-      console.log('person2Cost', costPerson2);
-
-
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
         // up person 2's debt
         debt.person1Paid(costPerson2);
-        console.log('ny skuld för person 1', debt.newDebtPerson1);
         // update db with person 2's debt
         debt.firebase.update({
           person2owesperson1: debt.newDebtPerson2
@@ -123,7 +118,6 @@ var app = angular.module('app')
       if (debt.whoPaid == 'person2') {
         // up person1's debt
         debt.person2Paid(costPerson1);
-        console.log('ny skuld för person 2', debt.newDebtPerson2);
         // update db with person 1's debt
         debt.firebase.update({
           person1owesperson2: debt.newDebtPerson1
@@ -138,7 +132,6 @@ var app = angular.module('app')
 
       // if person 1 paid
       if (whoPaid == 'person1') {
-        console.log('person 1 paid');
         debt.decreasePerson2(person2Cost);
         debt.firebase.update({
           person2owesperson1: debt.currentDebtPerson2
@@ -147,7 +140,6 @@ var app = angular.module('app')
 
       // if person 2 paid
       if (whoPaid == 'person2') {
-        console.log('person2 paid');
         debt.decreasePerson1(person1Cost);
         console.log()
         debt.firebase.update({

@@ -19,10 +19,11 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   scrollRef.scroll.next(5);
 
   $scope.items_unpaid = Items;
+
   // open up a new connection to receipts section in db
   var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
 
-
+  // snapshot to get unsettled receipts
   qRef.on("value", function(snapshot) {
     var unpaidCount = 0;
     // loop through each snapshot
@@ -69,6 +70,7 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
       console.log("The read failed: " + errorObject.code);
     });
 
+    // call factory to determine the debt
     DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
                               whoPayed, person1Cost, person2Cost);
 
