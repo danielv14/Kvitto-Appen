@@ -9,6 +9,7 @@ var app = angular.module('app')
     currentDebtPerson2: '',
     newDebtPerson1: '',
     newDebtPerson2: '',
+    firebase: new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who'),
 
     // set who paid the receipt
     // get value from sessionStorage
@@ -20,16 +21,6 @@ var app = angular.module('app')
     setCurrentDebt: function(person1, person2) {
       this.currentDebtPerson1 = parseFloat(person1);
       this.currentDebtPerson2 = parseFloat(person2);
-    },
-
-    // determine new debt for person 1
-    setNewDebtPerson1: function(newValue) {
-      this.newDebtPerson1 = this.currentDebtPerson1 + parseFloat(newValue);
-    },
-
-    // determine new debt for person 2
-    setNewDebtPerson2: function(newValue) {
-      this.newDebtPerson2 = this.currentDebtPerson2 + parseFloat(newValue);
     },
 
     // handle person1 debt if person2 paid
@@ -81,19 +72,18 @@ var app = angular.module('app')
 
       if (debt.whoPaid == 'person1') {
         debt.person1Paid(sessionStorage.costPerson2);
+        debt.firebase.update({
+          person2owesperson1: debt.newDebtPerson2
+        });
       }
 
       if (debt.whoPaid == 'person2') {
         debt.person2Paid(sessionStorage.costPerson1);
+        debt.firebase.update({
+          person1owesperson2: debt.newDebtPerson2
+        });
       }
 
-
-      // console logging
-      console.log('aktuell skuld för person1', debt.currentDebtPerson1);
-      console.log('ny skuld för person1', debt.newDebtPerson1);
-
-      console.log('aktuell skuld för person2', debt.currentDebtPerson2);
-      console.log('ny skuld för person2', debt.newDebtPerson2);
     }
 
   }

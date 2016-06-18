@@ -4,7 +4,6 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     $scope.config = Config;
     $scope.who = WhoOwesWho;
 
-    DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value);
 
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db
@@ -31,42 +30,8 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
         'category': sessionStorage.category
       })
 
-      // create variable for who db
-      var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
-
-      /*
-      * logic for updating who-owes-who db depending on person1 or person2 payed
-      */
-      // If person1 payed
-      if (sessionStorage.whoPaid == 'person1') {
-        // if the value is not zero = append
-        if ($scope.who[1].$value != 0) {
-          tempValue = $scope.who[1].$value; // create temp-value from person 2
-          whoRef.update({
-            person2owesperson1: $scope.person2 + tempValue
-          });
-        } else {
-          whoRef.update({
-            person2owesperson1 : $scope.person2
-          })
-        }
-
-      }
-      // if person 2 payed
-      if (sessionStorage.whoPaid == 'person2') {
-        // if value is not zero = append
-        if ($scope.who[0].$value != 0) {
-          tempValue = $scope.who[0].$value;
-          whoRef.update({
-            person1owesperson2: $scope.person1 + tempValue
-          });
-          } else {
-            whoRef.update({
-              person1owesperson2: $scope.person1
-            })
-          }
-
-      }
+      // call factory to determine debt's and update firebase db
+      DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value);
 
     }
   }])
