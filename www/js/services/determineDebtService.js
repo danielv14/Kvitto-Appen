@@ -84,6 +84,10 @@ var app = angular.module('app')
         });
       }
 
+    },
+
+    decreaseDebt: function(currentDebtPerson1, currentDebtPerson2) {
+      
     }
 
   }

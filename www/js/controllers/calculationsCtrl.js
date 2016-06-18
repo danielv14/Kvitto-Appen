@@ -1,4 +1,5 @@
 app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, Config, Items, WhoOwesWho, DetermineDebt) {
+
     // set scope variable from factories
     $scope.items = Items;
     $scope.config = Config;
@@ -16,7 +17,6 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
 
     // function to save values to db
     $scope.save = function() {
-      console.log('saving');
 
       // add to reciept database
       $scope.items.$add({
