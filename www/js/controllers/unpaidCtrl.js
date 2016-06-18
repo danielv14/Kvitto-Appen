@@ -1,5 +1,5 @@
 // controller for the not finished page
-app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', function($scope, $http, Items, Config, WhoOwesWho) {
+app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, Items, Config, WhoOwesWho, DetermineDebt) {
 
   // set up scope variables
   $scope.notFinished = Items;
@@ -17,9 +17,9 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho',
     });
 
     // get whoRef
-    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+    // var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
 
-    // varaibles for cost for person1 and person2
+    // // varaibles for cost for person1 and person2
     var person1Cost = 0;
     var person2Cost = 0;
     var whoPayed = '';
@@ -34,20 +34,24 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho',
       console.log("The read failed: " + errorObject.code);
     });
 
-    // update who owes who values
-    if (whoPayed == 'person1') {
-      tempValue = $scope.who[1].$value; // create temp-value from person 2
-      whoRef.update({
-        person2owesperson1: tempValue - person2Cost
-      })
-    }
+    DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
+                              whoPayed, person1Cost, person2Cost);
 
-    if (whoPayed == 'person2') {
-      tempValue = $scope.who[0].$value;
-      whoRef.update({
-        person1owesperson2: tempValue - person1Cost
-      })
-    }
+
+    // // update who owes who values
+    // if (whoPayed == 'person1') {
+    //   tempValue = $scope.who[1].$value; // create temp-value from person 2
+    //   whoRef.update({
+    //     person2owesperson1: tempValue - person2Cost
+    //   })
+    // }
+    //
+    // if (whoPayed == 'person2') {
+    //   tempValue = $scope.who[0].$value;
+    //   whoRef.update({
+    //     person1owesperson2: tempValue - person1Cost
+    //   })
+    // }
 
   }
 
