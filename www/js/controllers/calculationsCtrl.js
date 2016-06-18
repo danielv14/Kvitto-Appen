@@ -1,8 +1,10 @@
-app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', function($scope, $http, Config, Items, WhoOwesWho) {
+app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, Config, Items, WhoOwesWho, DetermineDebt) {
     // set scope variable from factories
     $scope.items = Items;
     $scope.config = Config;
     $scope.who = WhoOwesWho;
+
+    DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value);
 
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db

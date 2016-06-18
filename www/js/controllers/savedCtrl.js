@@ -34,7 +34,6 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
     })
     // attach unpaid count to scope
     $scope.unpaidReceiptCount = unpaidCount;
-    console.log($scope.unpaidReceiptCount);
 
   });
 
