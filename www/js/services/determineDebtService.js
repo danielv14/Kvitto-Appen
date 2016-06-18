@@ -24,6 +24,7 @@ var app = angular.module('app')
     },
 
     // handle person1 debt if person2 paid
+    // append value only if it's not zero
     person2Paid: function(value) {
       console.log('person2 betalade');
       if (debt.currentDebtPerson1 == 0) {
@@ -34,6 +35,7 @@ var app = angular.module('app')
     },
 
     // handle person2 debt if person1 paid
+    // append value only if it's not zero
     person1Paid: function(value) {
       console.log('person1 betalade');
       if (debt.currentDebtPerson2 == 0) {
@@ -70,15 +72,21 @@ var app = angular.module('app')
       debt.setWhoPaid();
       debt.setCurrentDebt(currentDebtPerson1, currentDebtPerson2);
 
+      // if person 1 paid
       if (debt.whoPaid == 'person1') {
+        // up person 2's debt
         debt.person1Paid(sessionStorage.costPerson2);
+        // update db with person 2's debt
         debt.firebase.update({
           person2owesperson1: debt.newDebtPerson2
         });
       }
 
+      // if person 2 paid
       if (debt.whoPaid == 'person2') {
+        // up person1's debt
         debt.person2Paid(sessionStorage.costPerson1);
+        // update db with person 1's debt
         debt.firebase.update({
           person1owesperson2: debt.newDebtPerson2
         });
@@ -87,7 +95,9 @@ var app = angular.module('app')
     },
 
     decreaseDebt: function(currentDebtPerson1, currentDebtPerson2) {
-      
+      debt.setWhoPaid();
+      debt.setCurrentDebt(currentDebtPerson1, currentDebtPerson2);
+
     }
 
   }
