@@ -5,10 +5,12 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     $scope.who = WhoOwesWho;
 
     // attach sessionStorage values (cost for each person and percentage)
-    // to scope variables and use them later of to save receipt
+    // to scope variables and use them later of to save receipt to db
     $scope.person1 = parseFloat(sessionStorage.costPerson1);
-    $scope.person1_percent = parseFloat(sessionStorage.percentagePerson1);
     $scope.person2 = parseFloat(sessionStorage.costPerson2);
+
+    // set percentage to scope
+    $scope.person1_percent = parseFloat(sessionStorage.percentagePerson1);
     $scope.person2_percent = parseFloat(sessionStorage.percentagePerson2);
 
     // function to save values to db
