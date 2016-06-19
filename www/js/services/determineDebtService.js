@@ -80,7 +80,7 @@ var app = angular.module('app')
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
         // up person 2's debt
-        debt.person1Paid(sessionStorage.costPerson2);
+        debt.person1Paid(parseFloat(sessionStorage.costPerson2));
         // update db with person 2's debt
         debt.firebase.update({
           person2owesperson1: debt.newDebtPerson2
@@ -90,7 +90,7 @@ var app = angular.module('app')
       // if person 2 paid
       if (debt.whoPaid == 'person2') {
         // up person1's debt
-        debt.person2Paid(sessionStorage.costPerson1);
+        debt.person2Paid(parseFloat(sessionStorage.costPerson1));
         // update db with person 1's debt
         debt.firebase.update({
           person1owesperson2: debt.newDebtPerson2
