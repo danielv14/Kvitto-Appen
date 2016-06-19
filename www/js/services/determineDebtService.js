@@ -93,7 +93,7 @@ var app = angular.module('app')
         debt.person2Paid(parseFloat(sessionStorage.costPerson1));
         // update db with person 1's debt
         debt.firebase.update({
-          person1owesperson2: debt.newDebtPerson2
+          person1owesperson2: debt.newDebtPerson1
         });
       }
 
