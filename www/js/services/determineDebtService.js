@@ -43,7 +43,6 @@ var app = angular.module('app')
     // handle person2 debt if person1 paid
     // append value only if it's not zero
     person1Paid: function(value) {
-      console.log('person1 betalade');
       if (debt.currentDebtPerson2 == 0) {
         debt.newDebtPerson2 = parseFloat(value);
       } else {
