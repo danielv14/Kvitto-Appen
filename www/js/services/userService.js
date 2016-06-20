@@ -5,10 +5,8 @@ var app = angular.module('app')
 
   var user = {
     baseRef: 'https://ionic-kvitto-app.firebaseio.com',
-
-    hello: function() {
-      console.log('hello world');
-    },
+    usersRef: 'https://ionic-kvitto-app.firebaseio.com/users',
+    uid: '',
 
     // login with google
     loginGoogle: function() {
@@ -20,15 +18,12 @@ var app = angular.module('app')
           console.log("Authenticated successfully with payload:", authData);
         }
       });
-    }
+    },
   } // end of user object
 
 
   return {
 
-    hello: function(){
-      user.hello();
-    },
     // login with google
     loginGoogle: function() {
       // call user function that does the authentication
