@@ -5,8 +5,6 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
     $scope.config = Config;
     $scope.who = WhoOwesWho;
 
-    User.hello();
-
     // calculate click button
     $scope.calculate = function() {
 
