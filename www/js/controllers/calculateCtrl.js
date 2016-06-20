@@ -1,10 +1,11 @@
-app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'Calculate', function($scope, $http, Config, Items, WhoOwesWho, Calculate) {
+app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'Calculate', 'User', function($scope, $http, Config, Items, WhoOwesWho, Calculate, User) {
 
     // set scope variable from factories
     $scope.items = Items;
     $scope.config = Config;
     $scope.who = WhoOwesWho;
 
+    User.hello();
     // calculate click button
     $scope.calculate = function() {
 
