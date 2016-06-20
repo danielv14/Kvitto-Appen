@@ -39,6 +39,12 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
     templateUrl: 'templates/tabs.html'
   })
 
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+
   .state('tab.calculate', {
     url: '/calculate',
     views: {
