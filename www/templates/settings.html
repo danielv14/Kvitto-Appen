@@ -1,6 +1,8 @@
 <ion-view view-title="Inställningar">
   <ion-content ng-controller="settingsCtrl">
 
+  <h1>Hej {{authData.google.displayName}}</h1>
+
   <!-- init names -->
   <div ng-if="config[2].$value != true" class="padding-button">
     <button class="button button-block button-calm" ng-click='initNames()'> Initiera namn</button>

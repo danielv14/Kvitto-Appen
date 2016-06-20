@@ -1,8 +1,18 @@
 // controller for settings page.
 app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
-  console.log('controller working');
   $scope.config = Config;
-  console.log($scope.config);
+  $scope.authData = '';
+
+  var ref = new Firebase("https://ionic-kvitto-app.firebaseio.com");
+  ref.onAuth(function(authData) {
+    if (authData) {
+      console.log("Authenticated with uid:", authData.uid);
+      console.log(authData);
+      $scope.authData = authData;
+    } else {
+      console.log("Client unauthenticated.")
+    }
+  });
 
   // function to init names in config db
   $scope.initNames = function() {
