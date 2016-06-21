@@ -2,31 +2,29 @@
 app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
   $scope.authData = '';
 
-  var ref = new Firebase("https://ionic-kvitto-app.firebaseio.com");
-  ref.onAuth(function(authData) {
-    if (authData) {
-      console.log("Authenticated with uid:", authData.uid);
-      $scope.authData = authData;
-      $scope.config = Config.getConfigArray(authData.uid);
+  // get authData from current user as an object
+  $scope.currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
+  console.log($scope.currentUser);
 
-    } else {
-      console.log("Client unauthenticated.")
-    }
-  });
+  // create variable for id of current user
+  var id = $scope.currentUser.google.id;
+
+  $scope.config = Config.getConfigArray($scope.currentUser.google.id);
 
 
 
-  // function to init names in config db
-  $scope.initNames = function() {
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
-    itemRef.set({
-      config: {
-        'person1': 'Jane Doe',
-        'person2': 'John Doe',
-        'qhasInit': true
-      }
-    })
-  }
+
+  // // function to init names in config db
+  // $scope.initNames = function() {
+  //   var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
+  //   itemRef.set({
+  //     config: {
+  //       'person1': 'Jane Doe',
+  //       'person2': 'John Doe',
+  //       'qhasInit': true
+  //     }
+  //   })
+  // }
 
   // function to update names
   $scope.updateNames = function() {
