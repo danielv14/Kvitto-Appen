@@ -1,18 +1,20 @@
 // controller for settings page.
 app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
-  $scope.config = Config;
   $scope.authData = '';
 
   var ref = new Firebase("https://ionic-kvitto-app.firebaseio.com");
   ref.onAuth(function(authData) {
     if (authData) {
       console.log("Authenticated with uid:", authData.uid);
-      console.log(authData);
       $scope.authData = authData;
+      $scope.config = Config.getConfigArray(authData.uid);
+
     } else {
       console.log("Client unauthenticated.")
     }
   });
+
+
 
   // function to init names in config db
   $scope.initNames = function() {
@@ -28,10 +30,9 @@ app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', functi
 
   // function to update names
   $scope.updateNames = function() {
-    console.log($scope.newNamePerson1);
-    console.log($scope.newNamePerson2);
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/config');
-    itemRef.update({
+
+    var configRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + $scope.authData.uid + '/config');
+    configRef.update({
       'person1': $scope.newNamePerson1,
       'person2': $scope.newNamePerson2
     });
@@ -40,7 +41,7 @@ app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', functi
   $scope.resetOwes = function() {
     console.log('click click');
     // create variable for who db
-    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who');
+    var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + $scope.authData.uid + '/who-owes-who');
     whoRef.update({
       'person1owesperson2': 0,
       'person2owesperson1': 0,
