@@ -10,8 +10,6 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
   // get authData
   $scope.authDataCallback = function(authData) {
     if (authData) {
-      console.log("User " + authData.uid + " is logged in with " + authData.provider);
-
       User.exist(authData);
 
     } else {
@@ -25,6 +23,8 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
 
     // call user factory to authenticate with google
     User.loginGoogle();
+    // setup new user if not user exists already
+    ref.onAuth($scope.authDataCallback);
 
 
   }
