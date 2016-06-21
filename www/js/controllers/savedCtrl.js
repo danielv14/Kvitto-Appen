@@ -1,13 +1,18 @@
 // controller for the database
 app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho, DetermineDebt) {
 
+  // get authData from current user as an object
+  var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
+
+  // create variable for id of current user
+  var id = currentUser.google.id;
 
   // set up scope variables from factories
-  $scope.config = Config
-  $scope.who = WhoOwesWho;
+  $scope.config = Config.getConfigArray(currentUser.google.id);
+  $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
 
   // create a connection to Firebase
-  var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
+  var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + currentUser.google.id + '/receipt');
 
   // create a scrollable reference
   var scrollRef = new Firebase.util.Scroll(baseRef, 'createdAt');
@@ -18,10 +23,10 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   // set 5 items to display at first
   scrollRef.scroll.next(5);
 
-  $scope.items_unpaid = Items;
+  $scope.items_unpaid = Items.getItemsArray(currentUser.google.id);
 
   // open up a new connection to receipts section in db
-  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt');
+  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + currentUser.google.id + '/receipt');
 
   // snapshot to get unsettled receipts
   qRef.on("value", function(snapshot) {
@@ -49,11 +54,12 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   // function to mark a object as done
   $scope.markDone = function(object) {
 
-    // set object to done
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
-    itemRef.update({
+    // set receipt to done
+    var receipt = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt/' + object);
+    receipt.update({
       done: true
     });
+
 
     // varaibles for cost for person1 and person2
     var person1Cost = 0;
@@ -61,8 +67,9 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
     var whoPayed = '';
 
     // get snapshot once
-    itemRef.once("value", function(snapshot) {
+    receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
+      console.log(snapshot.val().whoPayed);
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
       whoPayed = snapshot.val().whoPayed;
@@ -70,17 +77,19 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
       console.log("The read failed: " + errorObject.code);
     });
 
+    console.log(whoPayed);
     // call factory to determine the debt
     DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
-                              whoPayed, person1Cost, person2Cost);
+                              whoPayed, person1Cost, person2Cost, id);
 
   }
 
   // function to mark a object as undone
   $scope.markUnDone = function(object) {
 
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
-    itemRef.update({
+    // set receipt to not done
+    var receipt = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt/' + object);
+    receipt.update({
       done: false
     });
 
@@ -90,7 +99,7 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
     var whoPayed = '';
 
     // get snapshot once
-    itemRef.once("value", function(snapshot) {
+    receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
@@ -101,7 +110,7 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
 
 
     // call factory to determine debt's and update firebase db
-    DetermineDebt.increaseDebtWithoutSessionStorageWho($scope.who[0].$value, $scope.who[1].$value, whoPayed, person1Cost, person2Cost);
+    DetermineDebt.increaseDebtWithoutSessionStorageWho($scope.who[0].$value, $scope.who[1].$value, whoPayed, person1Cost, person2Cost, id);
 
 
 
@@ -110,9 +119,9 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   // function to delete single entry in db
   $scope.remove = function(object) {
 
-    var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/receipt/' + object);
+    var receipt = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt/' + object);
     // remove the item from db
-    itemRef.remove();
+    receipt.remove();
 
   }
 }])
