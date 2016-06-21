@@ -19,6 +19,24 @@ var app = angular.module('app')
       });
     },
 
+    // check if current user exist in db or not
+    // setup user if not in db
+    userExist: function(authData) {
+      // create a ref for current user
+      var currentUser = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + authData.uid);
+      // take a snapsot uf current user
+      currentUser.once("value", function(snapshot) {
+        // create variable for current user (bool value)
+        var a = snapshot.exists();
+        // create new user if user doesnt already exist
+        if (a === false) {
+          console.log('användaren finns inte. Skapar ny');
+          // call function to setup new user and pass it the authData
+          user.setupUser(authData);
+        }
+      });
+    },
+
     // setup new user upon first login
     setupUser: function(authData) {
       var user = this.usersRef.child(authData.uid);
@@ -50,6 +68,11 @@ var app = angular.module('app')
     // call it if user with uid doesnt already exist
     newUser: function(authData) {
       user.setupUser(authData);
+    },
+
+    // create new user in db if user doesnt already exist
+    exist: function(authData) {
+      user.userExist(authData);
     }
   }
 })
