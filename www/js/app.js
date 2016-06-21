@@ -82,12 +82,12 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
 
   })
 
-  .state('tab.settings', {
-    url: '/settings',
+  .state('tab.profile', {
+    url: '/profile',
     views: {
-      'tab-settings': {
-        templateUrl: 'templates/settings.html',
-        controller: 'settingsCtrl'
+      'tab-profile': {
+        templateUrl: 'templates/profile.html',
+        controller: 'profileCtrl'
       }
     }
 

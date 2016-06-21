@@ -1,5 +1,5 @@
 // controller for settings page.
-app.controller('settingsCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
+app.controller('profileCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
   $scope.authData = '';
 
   // get authData from current user as an object
