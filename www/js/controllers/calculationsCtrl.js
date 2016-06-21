@@ -1,8 +1,11 @@
 app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, Config, Items, WhoOwesWho, DetermineDebt) {
 
+    // get authData from current user as an object
+    var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
+
     // set scope variable from factories
-    $scope.items = Items;
-    $scope.config = Config;
+    $scope.items = Items.getItemsArray(currentUser.uid);
+    $scope.config = Config.getConfigArray(currentUser.uid);
     $scope.who = WhoOwesWho;
 
 
