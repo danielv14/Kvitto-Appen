@@ -34,7 +34,7 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
       })
 
       // call factory to determine debt's and update firebase db
-      DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value);
+      DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value, currentUser.google.id);
 
     }
   }])
