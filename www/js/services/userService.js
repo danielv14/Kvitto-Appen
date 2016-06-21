@@ -19,6 +19,22 @@ var app = angular.module('app')
       });
     },
 
+    // setup new user upon first login
+    setupUser: function(authData) {
+      var user = this.usersRef.child(authData.uid);
+      user.set({
+        config: {
+          person1: "John Doe",
+          person2: "Jane Doe",
+          qhasInit: false
+        },
+        who_owes_who: {
+          person1owesperson2: 0,
+          person2owesperson1: 0
+        }
+      });
+    }
+
   } // end of user object
 
 
@@ -29,5 +45,11 @@ var app = angular.module('app')
       // call user function that does the authentication
       user.loginGoogle();
     },
+
+    // create new user with setup data
+    // call it if user with uid doesnt already exist
+    newUser: function(authData) {
+      user.setupUser(authData);
+    }
   }
 })

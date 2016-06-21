@@ -6,10 +6,14 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
 
   $scope.auth = Auth;
 
+
   // get authData
   $scope.authDataCallback = function(authData) {
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
+      console.log('Creating new user...');
+      User.newUser(authData);
+
     } else {
       console.log("User is logged out");
     }
@@ -30,7 +34,6 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
 
     // Register the callback to be fired every time auth state changes
     ref.onAuth($scope.authDataCallback);
-
 
   }
 
