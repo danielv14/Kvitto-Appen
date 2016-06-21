@@ -4,9 +4,9 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
 
     // set scope variable from factories
-    $scope.items = Items.getItemsArray(currentUser.uid);
-    $scope.config = Config.getConfigArray(currentUser.uid);
-    $scope.who = WhoOwesWho;
+    $scope.items = Items.getItemsArray(currentUser.google.id);
+    $scope.config = Config.getConfigArray(currentUser.google.id);
+    $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
 
 
     // attach sessionStorage values (cost for each person and percentage)
