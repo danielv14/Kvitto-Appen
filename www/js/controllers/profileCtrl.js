@@ -1,10 +1,9 @@
 // controller for settings page.
-app.controller('profileCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', function($scope, $http, Config, WhoOwesWho) {
+app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebaseAuth','Auth', function($scope, $location, Config, User, $firebaseAuth, Auth) {
   $scope.authData = '';
 
   // get authData from current user as an object
   $scope.currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
-  console.log($scope.currentUser);
 
   // create variable for id of current user
   var id = $scope.currentUser.google.id;
@@ -44,6 +43,15 @@ app.controller('profileCtrl',['$scope', '$http', 'Config', 'WhoOwesWho', functio
       'person1owesperson2': 0,
       'person2owesperson1': 0,
     })
+  }
+
+  $scope.logout = function() {
+
+    $scope.authObj = Auth;
+    $scope.authObj.$unauth();
+    $location.path('login');
+
+
   }
 
 }])
