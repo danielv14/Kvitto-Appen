@@ -4,14 +4,13 @@ var app = angular.module('app')
 .factory("User", function($firebaseArray) {
 
   var user = {
-    baseRef: 'https://ionic-kvitto-app.firebaseio.com',
-    usersRef: 'https://ionic-kvitto-app.firebaseio.com/users',
+    baseRef: new Firebase('https://ionic-kvitto-app.firebaseio.com'),
+    usersRef: new Firebase('https://ionic-kvitto-app.firebaseio.com/users'),
     uid: '',
 
     // login with google
     loginGoogle: function() {
-      var ref = new Firebase(this.baseRef);
-      ref.authWithOAuthPopup("google", function(error, authData) {
+      this.baseRef.authWithOAuthPopup("google", function(error, authData) {
         if (error) {
           console.log("Login Failed!", error);
         } else {
@@ -19,6 +18,7 @@ var app = angular.module('app')
         }
       });
     },
+
   } // end of user object
 
 
@@ -28,6 +28,6 @@ var app = angular.module('app')
     loginGoogle: function() {
       // call user function that does the authentication
       user.loginGoogle();
-    }
+    },
   }
 })
