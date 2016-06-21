@@ -11,8 +11,21 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
   $scope.authDataCallback = function(authData) {
     if (authData) {
       console.log("User " + authData.uid + " is logged in with " + authData.provider);
-      console.log('Creating new user...');
-      User.newUser(authData);
+      // check if user exist already
+      // if not, create data
+      // else do nothing
+      var currentUser = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + authData.uid);
+      console.log(currentUser);
+      currentUser.once("value", function(snapshot) {
+        var a = snapshot.exists();
+        if (a === true) {
+          console.log('användaren finns');
+        } else {
+          console.log('användaren finns inte');
+          User.newUser(authData);
+        }
+      });
+      // User.newUser(authData);
 
     } else {
       console.log("User is logged out");
