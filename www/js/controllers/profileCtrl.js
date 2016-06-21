@@ -28,7 +28,7 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
   // function to update names
   $scope.updateNames = function() {
 
-    var configRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + $scope.authData.uid + '/config');
+    var configRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/config');
     configRef.update({
       'person1': $scope.newNamePerson1,
       'person2': $scope.newNamePerson2
