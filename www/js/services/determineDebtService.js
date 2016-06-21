@@ -9,7 +9,7 @@ var app = angular.module('app')
     currentDebtPerson2: '',
     newDebtPerson1: '',
     newDebtPerson2: '',
-    firebase: new Firebase('https://ionic-kvitto-app.firebaseio.com/who-owes-who'),
+    firebase: new Firebase('https://ionic-kvitto-app.firebaseio.com/who_owes_who'),
 
     // set who paid the receipt
     // get value from sessionStorage
@@ -73,16 +73,19 @@ var app = angular.module('app')
 
   return {
 
-    increaseDebt: function(currentDebtPerson1, currentDebtPerson2) {
+    increaseDebt: function(currentDebtPerson1, currentDebtPerson2, uid) {
       debt.setWhoPaid();
       debt.setCurrentDebt(currentDebtPerson1, currentDebtPerson2);
+
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
+
 
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
         // up person 2's debt
         debt.person1Paid(parseFloat(sessionStorage.costPerson2));
         // update db with person 2's debt
-        debt.firebase.update({
+        debtRef.update({
           person2owesperson1: debt.newDebtPerson2
         });
       }
@@ -92,7 +95,7 @@ var app = angular.module('app')
         // up person1's debt
         debt.person2Paid(parseFloat(sessionStorage.costPerson1));
         // update db with person 1's debt
-        debt.firebase.update({
+        debtRef.update({
           person1owesperson2: debt.newDebtPerson1
         });
       }
@@ -100,15 +103,18 @@ var app = angular.module('app')
     },
 
     // increase debt without knowing sessionStorage beforehand
-    increaseDebtWithoutSessionStorageWho: function(currentDebtPerson1, currentDebtPerson2, who, costPerson1, costPerson2) {
+    increaseDebtWithoutSessionStorageWho: function(currentDebtPerson1, currentDebtPerson2, who, costPerson1, costPerson2, uid) {
       debt.setWhoPaidWithoutSession(who);
+
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
+
 
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
         // up person 2's debt
         debt.person1Paid(costPerson2);
         // update db with person 2's debt
-        debt.firebase.update({
+        debtRef.update({
           person2owesperson1: debt.newDebtPerson2
         });
       }
@@ -118,30 +124,37 @@ var app = angular.module('app')
         // up person1's debt
         debt.person2Paid(costPerson1);
         // update db with person 1's debt
-        debt.firebase.update({
+        debtRef.update({
           person1owesperson2: debt.newDebtPerson1
         });
       }
 
     },
 
-    decreaseDebt: function(debtPerson1, debtPerson2, whoPaid, person1Cost, person2Cost) {
+    decreaseDebt: function(debtPerson1, debtPerson2, whoPaid, person1Cost, person2Cost, id) {
       debt.setCurrentDebt(debtPerson1, debtPerson2);
+      debt.setWhoPaidWithoutSession(whoPaid);
+      console.log(whoPaid);
+      console.log(id);
+      console.log(debt.whoPaid);
 
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/who_owes_who');
 
       // if person 1 paid
-      if (whoPaid == 'person1') {
+      if (debt.whoPaid == 'person1') {
+        console.log('person1 betalade');
         debt.decreasePerson2(person2Cost);
-        debt.firebase.update({
+        debtRef.update({
           person2owesperson1: debt.currentDebtPerson2
         });
       }
 
       // if person 2 paid
-      if (whoPaid == 'person2') {
+      if (debt.whoPaid == 'person2') {
+        console.log('person2 betalade');
         debt.decreasePerson1(person1Cost);
         console.log()
-        debt.firebase.update({
+        debtRef.update({
           person1owesperson2: debt.currentDebtPerson1
         });
       }
