@@ -39,7 +39,7 @@ var app = angular.module('app')
 
     // setup new user upon first login
     setupUser: function(authData) {
-      var user = this.usersRef.child(authData.uid);
+      var user = this.usersRef.child(authData.google.id);
       user.set({
         config: {
           person1: "John Doe",
