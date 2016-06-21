@@ -21,9 +21,9 @@ var app = angular.module('app')
 
     // check if current user exist in db or not
     // setup user if not in db
-    userExist: function(authData) {
+    userExist: function(authData, id) {
       // create a ref for current user
-      var currentUser = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + authData.uid);
+      var currentUser = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id);
       // take a snapsot uf current user
       currentUser.once("value", function(snapshot) {
         // create variable for current user (bool value)
@@ -71,8 +71,8 @@ var app = angular.module('app')
     },
 
     // create new user in db if user doesnt already exist
-    exist: function(authData) {
-      user.userExist(authData);
+    exist: function(authData, id) {
+      user.userExist(authData, id);
     }
   }
 })

@@ -11,6 +11,8 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
   $scope.authDataCallback = function(authData) {
     if (authData) {
       User.exist(authData);
+      User.exist(authData, authData.google.id);
+      sessionStorage.currentUserId = authData.google.id;
 
     } else {
       console.log("User is logged out");
