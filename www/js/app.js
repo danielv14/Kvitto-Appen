@@ -1,6 +1,14 @@
 var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularMoment'])
 
-.run(function($ionicPlatform, amMoment) {
+.run(function($ionicPlatform, amMoment, $rootScope, $state) {
+
+  $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
+    // We can catch the error thrown when the $requireAuth promise is rejected
+    // and redirect the user back to the home page
+    if (error === "AUTH_REQUIRED") {
+      $state.go("login");
+    }
+  });
 
   // set moment.js to swedish
   amMoment.changeLocale('sv');
@@ -48,7 +56,17 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
         templateUrl: 'templates/calculate.html',
 
       }
+    },
+    resolve: {
+      // controller will not be loaded until $requireAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireAuth returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $stateChangeError (see above)
+        return Auth.$requireAuth();
+      }]
     }
+
   })
 
   .state('tab.calculations', {
@@ -58,6 +76,15 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
         templateUrl: 'templates/calculations.html',
         controller: 'calculationsCtrl'
       }
+    },
+    resolve: {
+      // controller will not be loaded until $requireAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireAuth returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $stateChangeError (see above)
+        return Auth.$requireAuth();
+      }]
     }
   })
 
@@ -68,6 +95,15 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
         templateUrl: 'templates/saved.html',
         controller: 'savedCtrl'
       }
+    },
+    resolve: {
+      // controller will not be loaded until $requireAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireAuth returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $stateChangeError (see above)
+        return Auth.$requireAuth();
+      }]
     }
 
   })
@@ -78,6 +114,15 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
       'tab-unpaid': {
         templateUrl: 'templates/unpaid.html',
       }
+    },
+    resolve: {
+      // controller will not be loaded until $requireAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireAuth returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $stateChangeError (see above)
+        return Auth.$requireAuth();
+      }]
     }
 
   })
@@ -89,6 +134,15 @@ var app = angular.module('app', ['ionic', 'angularMoment', 'firebase', 'angularM
         templateUrl: 'templates/profile.html',
         controller: 'profileCtrl'
       }
+    },
+    resolve: {
+      // controller will not be loaded until $requireAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $requireAuth returns a promise so the resolve waits for it to complete
+        // If the promise is rejected, it will throw a $stateChangeError (see above)
+        return Auth.$requireAuth();
+      }]
     }
 
   })
