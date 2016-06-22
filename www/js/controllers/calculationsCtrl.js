@@ -8,7 +8,6 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     $scope.config = Config.getConfigArray(currentUser.google.id);
     $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
 
-
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db
     $scope.person1 = parseFloat(sessionStorage.costPerson1);
