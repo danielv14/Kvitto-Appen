@@ -39,6 +39,13 @@
             <ion-radio ng-model="category.name" value="other" ng-required="true">Övrigt <i class="ion-waterdrop calm"></i></ion-radio>
           </ion-list>
 
+          <li class="item item-divider">Egen notering</li>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Notering</span>
+            <input type="text" ng-model="note" placeholder="Skriv egen notering om du så vill">
+          </label>
+
+
           <div class="row text-center">
             <div class="col-50">
               <button class="button button-block button-calm ion-ios-calculator"

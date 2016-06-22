@@ -54,7 +54,7 @@ var app = angular.module('app')
 
     return {
 
-      calculate: function(amount, costPerson1, costPerson2, whoPaid, category) {
+      calculate: function(amount, costPerson1, costPerson2, whoPaid, category, note) {
 
         // call function to set total amount
         receipt.setAmount(amount);
@@ -82,6 +82,9 @@ var app = angular.module('app')
         sessionStorage.whoPaid = receipt.whoPaid;
         // store value to sessionStorage about receipt category
         sessionStorage.setItem("category", receipt.category);
+        // can save passed note variable directly to sessionStorage
+        // since it doesn't have to be altered somehow
+        sessionStorage.setItem("note", note);
 
       }
 

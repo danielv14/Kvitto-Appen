@@ -16,6 +16,10 @@
 <p>{{config[0].$value}}: {{item.costPerson1}} kr</p>
 <p>{{config[1].$value}}: {{item.costPerson2}} kr</p>
 
+<p ng-show="item.note != null">
+  Egen notering: {{item.note}}
+</p>
+
 <!-- Display various info about the receipt -->
 <p>
   <i class="ion-ios-clock-outline"></i>
@@ -25,6 +29,8 @@
   <i ng-if="item.category == 'household'" class="ion-home royal"></i>
   <i ng-if="item.category == 'pleasure'" class="ion-ios-star balanced"></i>
 </p>
+
+
 
 <!-- Icon to delete receipt from firebase db -->
 <i ng-if ="item.done == true" ng-click="remove(item.$id)" class="icon ion-minus-circled gray"></i>

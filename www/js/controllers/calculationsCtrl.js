@@ -29,7 +29,8 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
         'createdAt': Firebase.ServerValue.TIMESTAMP,
         'done': false,
         'whoPayed': sessionStorage.whoPaid,
-        'category': sessionStorage.category
+        'category': sessionStorage.category,
+        'note': sessionStorage.note
       })
 
       // call factory to determine debt's and update firebase db

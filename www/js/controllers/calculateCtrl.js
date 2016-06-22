@@ -14,9 +14,10 @@ app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesW
       var person2 = $scope.person2;
       var whoPaid = $scope.data.singleSelect;
       var category = $scope.category.name;
+      var note = $scope.note;
 
       // call factory function to do calculations
-      Calculate.calculate(amount, person1, person2, whoPaid, category);
+      Calculate.calculate(amount, person1, person2, whoPaid, category, note);
 
     }
 
