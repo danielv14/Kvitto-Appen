@@ -1,5 +1,13 @@
 <ion-view view-title="Min profil">
-  <ion-content ng-controller="profileCtrl">
+
+  <!-- av button on the right to logout -->
+  <ion-nav-buttons side="right">
+     <button class="button" ng-click="logout()">
+        Logga ut
+     </button>
+   </ion-nav-buttons>
+
+  <ion-content>
 
     <div class="list">
 
@@ -32,10 +40,6 @@
       </form>
     </div> <!-- end of update names -->
 
-
-    <div class="padding-button">
-      <button ng-click="logout()"class="button button-block button-assertive">Logga ut</button>
-    </div>
 
   </ion-content>
 </ion-view>

@@ -56,13 +56,14 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
     })
   }
 
+  // end the auth session and change location to login state
   $scope.logout = function() {
 
     $scope.authObj = Auth;
     $scope.authObj.$unauth();
     $location.path('login');
 
-
   }
+
 
 }])
