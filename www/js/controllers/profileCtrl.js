@@ -1,5 +1,5 @@
 // controller for settings page.
-app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebaseAuth','Auth', function($scope, $location, Config, User, $firebaseAuth, Auth) {
+app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebaseAuth','Auth', 'Items', function($scope, $location, Config, User, $firebaseAuth, Auth, Items) {
   $scope.authData = '';
 
   // get authData from current user as an object
@@ -8,22 +8,33 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
   // create variable for id of current user
   var id = $scope.currentUser.google.id;
 
-  $scope.config = Config.getConfigArray($scope.currentUser.google.id);
+  console.log($scope.currentUser);
+
+  $scope.profileImage = $scope.currentUser.google.profileImageURL;
+
+  $scope.items = Items.getItemsArray(id);
+
+  $scope.config = Config.getConfigArray(id);
+
+  // open up a new connection to receipts section in db
+  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
+
+  // snapshot to fetch all receipts with unpaid value
+  qRef.on("value", function(snapshot) {
+    var unpaidCount = 0;
+    // loop through each snapshot
+    snapshot.forEach(function(receipt) {
+      // if receipt is not done, iterate count
+      if (!receipt.child('done').val()) {
+        unpaidCount += 1
+      }
+    })
+    // attach unpaid count to scope
+    $scope.unPaid = unpaidCount;
+  });
 
 
 
-
-  // // function to init names in config db
-  // $scope.initNames = function() {
-  //   var itemRef = new Firebase('https://ionic-kvitto-app.firebaseio.com');
-  //   itemRef.set({
-  //     config: {
-  //       'person1': 'Jane Doe',
-  //       'person2': 'John Doe',
-  //       'qhasInit': true
-  //     }
-  //   })
-  // }
 
   // function to update names
   $scope.updateNames = function() {

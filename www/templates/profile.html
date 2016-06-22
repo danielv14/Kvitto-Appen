@@ -1,34 +1,37 @@
 <ion-view view-title="Min profil">
   <ion-content ng-controller="profileCtrl">
 
-  <h1>Hej {{currentUser.google.displayName}}</h1>
-
-
-  <!-- update names -->
-  <form name="names" novalidate>
     <div class="list">
 
-      <label class="item item-input">
-        <input type="text" ng-model="newNamePerson1" placeholder="Nuvarande namn för person 1 är {{config[0].$value}}" required>
-      </label>
+      <div class="item item-divider">Information</div>
 
-      <label class="item item-input">
-        <input type="text" ng-model="newNamePerson2" placeholder="Nuvarande namn för person 2 är {{config[1].$value}}" required>
-      </label>
+      <!-- info about current user -->
+      <span class="item item-avatar">
+        <img ng-src="{{profileImage}}">
+        <h2>{{currentUser.google.displayName}}</h2>
+        <p>{{items.length}} sparade kvitton varav {{unPaid}} obetalda</p>
+      </span>
 
-      <div class="padding-button">
-        <button class="button button-block button-balanced" ng-disabled="names.$invalid" ng-click='updateNames()'> Uppdatera namn</button>
-      </div>
 
+      <!-- update names -->
+      <form name="names" novalidate>
+        <div class="item item-divider">Namn på personer</div>
+
+
+        <label class="item item-input">
+          <input type="text" ng-model="newNamePerson1" placeholder="Nuvarande namn för person 1 är {{config[0].$value}}" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="text" ng-model="newNamePerson2" placeholder="Nuvarande namn för person 2 är {{config[1].$value}}" required>
+        </label>
+
+        <div class="padding-button">
+          <button class="button button-block button-balanced" ng-disabled="names.$invalid" ng-click='updateNames()'> Uppdatera namn</button>
+        </div>
+      </form>
     </div> <!-- end of update names -->
-  </form>
 
-
-<!--
-    <div class="padding-button">
-      Återskapa skyldighets-statistiken om det har blivit fel någonstans...
-      <button ng-click="resetOwes()"class="button button-block button-assertive">Återställ skyldig-statistik</button>
-    </div> -->
 
     <div class="padding-button">
       <button ng-click="logout()"class="button button-block button-assertive">Logga ut</button>
