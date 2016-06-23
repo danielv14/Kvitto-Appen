@@ -8,8 +8,6 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
   // create variable for id of current user
   var id = $scope.currentUser.google.id;
 
-  console.log($scope.currentUser);
-
   $scope.profileImage = $scope.currentUser.google.profileImageURL;
 
   $scope.items = Items.getItemsArray(id);
@@ -46,6 +44,7 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
     });
   }
 
+  // CURRENTLY NOT IN USE
   $scope.resetOwes = function() {
     // create variable for who db
     var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + $scope.authData.uid + '/who-owes-who');
