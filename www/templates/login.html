@@ -1,9 +1,18 @@
 <ion-view view-title="Logga in" name="login-view">
-  <ion-content class="padding">
-    <h1>Räkna Kvitto</h1>
-    <p>För att nyttja appen behöver du logga in</p>
-    <button class="button button-block button-assertive" ng-click="loginWithGoogle()">Logga in med Google</button>
-    <button class="button button-block button-assertive" ng-click="amILoggedIn()">Är jag inloggad?</button>
+  <ion-content class="padding login-wrapper">
+    <br>
+    <img class="icon-login" src="../img/login.png" alt="">
+    <br>
+    <p class="text-center lead white">
+      Logga in med ett google konto
+    </p>
+    <p class="text-center lead white">
+      för att få en personlig upplevelse
+    </p>
+
+    <br>
+    <button class="button button-block button-light button-outline" ng-click="loginWithGoogle()">Logga in med Google</button>
+    <!-- <button class="button button-block button-assertive" ng-click="amILoggedIn()">Är jag inloggad?</button> -->
 
 
   </ion-content>

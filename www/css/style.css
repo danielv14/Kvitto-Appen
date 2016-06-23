@@ -7,6 +7,27 @@
   color: #D3D3D3;
 }
 
+.white {
+  color: white;
+}
+
+
+.login-wrapper {
+  background-color: #886aea;
+}
+
+.lead {
+  font-size: 1.2em;
+  font-weight: thin;
+}
+
+.icon-login {
+  width: 70%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 
 .bar-header, .back-button {
    height: 60px;
