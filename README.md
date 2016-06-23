@@ -1,5 +1,3 @@
-Kvitto Räknaren
-=====================
 ![Alt text](www/img/login.png)
 
 # En webbapp för att dela upp kvitton
