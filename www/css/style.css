@@ -30,15 +30,15 @@
 
 
 .bar-header, .back-button {
-   height: 60px;
+   height: 65px;
 }
 
 .bar-header .title, .back-button {
-   line-height: 60px;
+   line-height: 65px;
 }
 
 .has-header {
-   top: 60px;
+   top: 65px;
 }
 
 .padidng-left {
