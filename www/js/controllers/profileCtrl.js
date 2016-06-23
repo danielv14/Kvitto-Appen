@@ -47,7 +47,6 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
   }
 
   $scope.resetOwes = function() {
-    console.log('click click');
     // create variable for who db
     var whoRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + $scope.authData.uid + '/who-owes-who');
     whoRef.update({
