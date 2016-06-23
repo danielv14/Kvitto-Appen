@@ -10,7 +10,7 @@ var app = angular.module('app')
 
     // login with google
     loginGoogle: function() {
-      this.baseRef.authWithOAuthPopup("google", function(error, authData) {
+      this.baseRef.authWithOAuthRedirect("google", function(error, authData) {
         if (error) {
           console.log("Login Failed!", error);
         } else {
