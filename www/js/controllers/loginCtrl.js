@@ -1,4 +1,4 @@
-app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', function($scope, $http, $firebaseArray, User, Auth) {
+app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth', function($scope, $location, $firebaseArray, User, Auth) {
 
   // setup reference variable
   var ref = new Firebase("https://ionic-kvitto-app.firebaseio.com/");
@@ -6,36 +6,43 @@ app.controller('loginCtrl',['$scope', '$http','$firebaseArray','User', 'Auth', f
 
   $scope.auth = Auth;
 
+  // fix from http://stackoverflow.com/questions/26390027/firebase-authwithoauthredirect-woes
+  // if reload is true then setTimeout to reload page and change location
+  if (sessionStorage.reload) {
+    delete sessionStorage.reload;
+    setTimeout(function() {
+      location.reload();
+      $location.path('tab.calculate');
+    }, 1000)
+}
 
-  // get authData
-  $scope.authDataCallback = function(authData) {
+  // check Auth status, redirect to app if user is signed in
+  Auth.$onAuth(function(authData){
     if (authData) {
-      User.exist(authData);
+      console.log('user logged in');
+      console.log(authData);
       User.exist(authData, authData.google.id);
-      sessionStorage.currentUserId = authData.google.id;
-
+      $location.path('tab.calculate');
     } else {
-      console.log("User is logged out");
+      console.log('user not logged in');
     }
-  }
-
+  })
 
   // login with google
   $scope.loginWithGoogle = function() {
 
-    // call user factory to authenticate with google
-    User.loginGoogle();
-    // setup new user if not user exists already
-    ref.onAuth($scope.authDataCallback);
+    // set reload to true
+    sessionStorage.reload = true;
 
 
-  }
+    ref.authWithOAuthRedirect("google", function(error) {
+      if (error) {
+        console.log("Authentication Failed!", error);
+      } else {
+        // We'll never get here, as the page will redirect on success.
+      }
+    });
 
-  $scope.amILoggedIn = function() {
-
-
-    // Register the callback to be fired every time auth state changes
-    ref.onAuth($scope.authDataCallback);
 
   }
 
