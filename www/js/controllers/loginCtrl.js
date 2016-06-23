@@ -44,7 +44,7 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
     // set reload to true
     sessionStorage.reload = true;
 
-    ref.authWithOAuthPopup("google", function(error) {
+    ref.authWithOAuthRedirect("google", function(error) {
       if (error) {
         console.log("Authentication Failed!", error);
       } else {
@@ -58,7 +58,7 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
     console.log('klick');
     // set reload to true
     sessionStorage.reload = true;
-    ref.authWithOAuthPopup("facebook", function(error) {
+    ref.authWithOAuthRedirect("facebook", function(error) {
       if (error) {
         console.log("Login Failed!", error);
       } else {
