@@ -4,13 +4,18 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho',
   // get authData from current user as an object
   var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
 
-  // create variable for id of current user
-  var id = currentUser.google.id;
-  
+  // create variable for id of current user depending on OAuth
+  if (currentUser.provider == 'google') {
+    var id = currentUser.google.id;
+  } else if (currentUser.provider == 'facebook') {
+    var id = currentUser.facebook.id;
+  }
+
+
   // set up scope variables
-  $scope.notFinished = Items.getItemsArray(currentUser.google.id);
-  $scope.config = Config.getConfigArray(currentUser.google.id);
-  $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
+  $scope.notFinished = Items.getItemsArray(id);
+  $scope.config = Config.getConfigArray(id);
+  $scope.who = WhoOwesWho.getDebtArray(id);
   $scope.totalPerson1 = 0;
   $scope.totalPerson2 = 0;
 

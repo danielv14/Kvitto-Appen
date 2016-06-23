@@ -7,7 +7,7 @@
      </button>
    </ion-nav-buttons>
 
-  <ion-content>
+  <ion-content ng-controller="profileCtrl">
 
     <div class="list">
 
@@ -16,7 +16,7 @@
       <!-- info about current user -->
       <span class="item item-avatar">
         <img ng-src="{{profileImage}}">
-        <h2>{{currentUser.google.displayName}}</h2>
+        <h2>{{displayName}}</h2>
         <p>{{items.length}} sparade kvitton varav {{unPaid}} obetalda</p>
       </span>
 
@@ -27,11 +27,11 @@
 
 
         <label class="item item-input">
-          <input type="text" ng-model="newNamePerson1" placeholder="Nuvarande namn för person 1 är {{config[0].$value}}" required>
+          <input type="text" ng-model="name.person1" placeholder="Nuvarande namn för person 1 är {{config[0].$value}}" required>
         </label>
 
         <label class="item item-input">
-          <input type="text" ng-model="newNamePerson2" placeholder="Nuvarande namn för person 2 är {{config[1].$value}}" required>
+          <input type="text" ng-model="name.person2" placeholder="Nuvarande namn för person 2 är {{config[1].$value}}" required>
         </label>
 
         <div class="padding-button">
@@ -39,6 +39,7 @@
         </div>
       </form>
     </div> <!-- end of update names -->
+
 
 
   </ion-content>

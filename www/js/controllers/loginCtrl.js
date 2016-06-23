@@ -12,7 +12,6 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
     delete sessionStorage.reload;
     setTimeout(function() {
       location.reload();
-      $location.path('tab.calculate');
     }, 1000)
 }
 
@@ -21,8 +20,19 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
     if (authData) {
       console.log('user logged in');
       console.log(authData);
-      User.exist(authData, authData.google.id);
-      $location.path('tab.calculate');
+      // check if user exist with id depending on which OAuth provider
+      if (authData.provider == 'google') {
+
+        User.exist(authData, authData.google.id);
+        $location.path('tab.calculate');
+
+      } else if (authData.provider == 'facebook') {
+
+        User.exist(authData, authData.facebook.id);
+        $location.path('tab.calculate');
+
+      }
+
     } else {
       console.log('user not logged in');
     }
@@ -34,8 +44,7 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
     // set reload to true
     sessionStorage.reload = true;
 
-
-    ref.authWithOAuthRedirect("google", function(error) {
+    ref.authWithOAuthPopup("google", function(error) {
       if (error) {
         console.log("Authentication Failed!", error);
       } else {
@@ -43,7 +52,19 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
       }
     });
 
+  }
 
+  $scope.loginWithFacebook = function() {
+    console.log('klick');
+    // set reload to true
+    sessionStorage.reload = true;
+    ref.authWithOAuthPopup("facebook", function(error) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        // We'll never get here, as the page will redirect on success.
+      }
+    });
   }
 
 }])

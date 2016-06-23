@@ -4,11 +4,22 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
 
   // get authData from current user as an object
   $scope.currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
+  console.log($scope.currentUser);
+  // create variable for id of current user depending on OAuth
+  if ($scope.currentUser.provider == 'google') {
 
-  // create variable for id of current user
-  var id = $scope.currentUser.google.id;
+    var id = $scope.currentUser.google.id;
+    $scope.profileImage = $scope.currentUser.google.profileImageURL;
+    $scope.displayName = $scope.currentUser.google.displayName;
 
-  $scope.profileImage = $scope.currentUser.google.profileImageURL;
+  } else if ($scope.currentUser.provider == 'facebook') {
+
+    var id = $scope.currentUser.facebook.id;
+    $scope.profileImage = $scope.currentUser.facebook.profileImageURL;
+    $scope.displayName = $scope.currentUser.facebook.displayName;
+
+  }
+
 
   $scope.items = Items.getItemsArray(id);
 
@@ -39,9 +50,15 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
 
     var configRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/config');
     configRef.update({
-      'person1': $scope.newNamePerson1,
-      'person2': $scope.newNamePerson2
+      'person1': $scope.name.person1,
+      'person2': $scope.name.person2
     });
+
+    // clear scopes resulting in placeholders displaying with new names
+    // in profile view
+    $scope.name.person1 = null;
+    $scope.name.person2 = null;
+
   }
 
   // CURRENTLY NOT IN USE

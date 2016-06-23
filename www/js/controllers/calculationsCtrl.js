@@ -3,10 +3,17 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     // get authData from current user as an object
     var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
 
+    // create variable for id of current user depending on OAuth
+    if (currentUser.provider == 'google') {
+      var id = currentUser.google.id;
+    } else if (currentUser.provider == 'facebook') {
+      var id = currentUser.facebook.id;
+    }
+
     // set scope variable from factories
-    $scope.items = Items.getItemsArray(currentUser.google.id);
-    $scope.config = Config.getConfigArray(currentUser.google.id);
-    $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
+    $scope.items = Items.getItemsArray(id);
+    $scope.config = Config.getConfigArray(id);
+    $scope.who = WhoOwesWho.getDebtArray(id);
 
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db
@@ -34,7 +41,7 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
       })
 
       // call factory to determine debt's and update firebase db
-      DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value, currentUser.google.id);
+      DetermineDebt.increaseDebt($scope.who[0].$value, $scope.who[1].$value, id);
 
     }
   }])

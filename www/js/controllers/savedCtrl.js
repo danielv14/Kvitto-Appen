@@ -4,15 +4,20 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   // get authData from current user as an object
   var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
 
-  // create variable for id of current user
-  var id = currentUser.google.id;
+  // create variable for id of current user depending on OAuth
+  if (currentUser.provider == 'google') {
+    var id = currentUser.google.id;
+  } else if (currentUser.provider == 'facebook') {
+    var id = currentUser.facebook.id;
+  }
+
 
   // set up scope variables from factories
-  $scope.config = Config.getConfigArray(currentUser.google.id);
-  $scope.who = WhoOwesWho.getDebtArray(currentUser.google.id);
+  $scope.config = Config.getConfigArray(id);
+  $scope.who = WhoOwesWho.getDebtArray(id);
 
   // create a connection to Firebase
-  var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + currentUser.google.id + '/receipt');
+  var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
 
   // create a scrollable reference
   var scrollRef = new Firebase.util.Scroll(baseRef, 'createdAt');
@@ -23,10 +28,10 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
   // set 5 items to display at first
   scrollRef.scroll.next(5);
 
-  $scope.items_unpaid = Items.getItemsArray(currentUser.google.id);
+  $scope.items_unpaid = Items.getItemsArray(id);
 
   // open up a new connection to receipts section in db
-  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + currentUser.google.id + '/receipt');
+  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
 
   // snapshot to get unsettled receipts
   qRef.on("value", function(snapshot) {

@@ -39,12 +39,15 @@ var app = angular.module('app')
 
     // setup new user upon first login
     setupUser: function(authData) {
-      var user = this.usersRef.child(authData.google.id);
+      if (authData.provider == 'google') {
+        var user = this.usersRef.child(authData.google.id);
+      } else if (authData.provider == 'facebook') {
+        var user = this.usersRef.child(authData.facebook.id);
+      }
       user.set({
         config: {
           person1: "John Doe",
           person2: "Jane Doe",
-          qhasInit: false
         },
         who_owes_who: {
           person1owesperson2: 0,
