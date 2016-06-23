@@ -1,25 +1,16 @@
-Ionic App Base
+Kvitto Räknaren
 =====================
+![Alt text](www/img/login.png)
 
-A starting project for Ionic that optionally supports using custom SCSS.
+# En webbapp för att dela upp kvitton
+KvittoRäknaren är en webbapp till för personer som ofta handlar med en annan person (sambo eller liknande). Många kanske storhandlar veckans mat tillsammans, tar hela inköpet på samma kort även om man köpt olika frukostar och andra individuella saker. Uppdelningen av kvittot och vem som handlade för hur mycket kan bli drygt att räkna ut för hand varje gång. Det är här KvittoRäknaren kommer in i bilden. Genom att fylla i den totala kostnaden och varje persons individuella inköp samt vem det var som betalade räknar appen ut vem som handlade för hur mycket, sparar kvittot och håller koll på skulderna för varje person. När en skuld har betalats kan kvittot enkelt markeras som klart men kan ändå sparas i appen som referens.   
+Vidare kategoriseras kvitton för att ge användare bättre inblick i vad varje kvitto innebar samt att användare själva kan skapa en kortare minnesnotering om varje inköp om kategoriseringen inte är tillräcklig för repsektive inköp.
 
-## Using this project
+## Bilder
+<!-- ![Alt text](www/img/icon-bigger.png "Title") -->
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
 
-```bash
-$ npm install -g ionic
-```
 
-Then run:
-
-```bash
-$ ionic start myProject tabs
-```
-
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+## Användaren
+Skriv om  google konto.
