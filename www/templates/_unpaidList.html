@@ -6,6 +6,6 @@
 <h2>{{item.costPerson1 + item.costPerson2}} kr <span class="item-note"><i class="ion-ios-clock-outline"></i> <span>{{item.createdAt | amCalendar}}</span></h2>
 <p>{{config[0].$value}} handlade för {{item.costPerson1}} kr <br>{{config[1].$value}} handlade för {{item.costPerson2}} kr</p>
 
-<p ng-show="item.note != null">
+<p ng-show="item.note != 'undefined'">
   Egen notering: {{item.note}}
 </p>

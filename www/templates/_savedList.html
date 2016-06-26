@@ -16,7 +16,7 @@
 <p>{{config[0].$value}}: {{item.costPerson1}} kr</p>
 <p>{{config[1].$value}}: {{item.costPerson2}} kr</p>
 
-<p ng-show="item.note != null">
+<p ng-show="item.note != 'undefined'">
   Egen notering: {{item.note}}
 </p>
 
