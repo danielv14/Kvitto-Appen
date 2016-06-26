@@ -4,7 +4,7 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
 
   // get authData from current user as an object
   $scope.currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
-  console.log($scope.currentUser);
+
   // create variable for id of current user depending on OAuth
   if ($scope.currentUser.provider == 'google') {
 
