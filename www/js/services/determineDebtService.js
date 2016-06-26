@@ -31,7 +31,6 @@ var app = angular.module('app')
     // handle person1 debt if person2 paid
     // append value only if it's not zero
     person2Paid: function(value) {
-      console.log('person2 betalade');
       if (debt.currentDebtPerson1 == 0) {
         debt.newDebtPerson1 = parseFloat(value);
       } else {
@@ -134,9 +133,6 @@ var app = angular.module('app')
 
       debt.setCurrentDebt(debtPerson1, debtPerson2);
       debt.setWhoPaidWithoutSession(whoPaid);
-      console.log(whoPaid);
-      console.log(id);
-      console.log(debt.whoPaid);
 
 
       var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
