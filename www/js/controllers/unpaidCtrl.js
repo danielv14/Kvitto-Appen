@@ -1,5 +1,5 @@
 // controller for the not finished page
-app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, Items, Config, WhoOwesWho, DetermineDebt) {
+app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDebt', function($scope, $http, Items, Config, DetermineDebt) {
 
   // get authData from current user as an object
   var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
@@ -15,13 +15,13 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho',
   // set up scope variables
   $scope.notFinished = Items.getItemsArray(id);
   $scope.config = Config.getConfigArray(id);
-  $scope.who = WhoOwesWho.getDebtArray(id);
+  $scope.who = DetermineDebt.getDebtArray(id);
   $scope.totalPerson1 = 0;
   $scope.totalPerson2 = 0;
 
   // function to mark a object as done
   $scope.markDone = function(object) {
-    console.log('marking item done with id', object);
+
     // set receipt to done
     var receipt = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt/' + object);
     receipt.update({
@@ -44,7 +44,6 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'WhoOwesWho',
       console.log("The read failed: " + errorObject.code);
     });
 
-    console.log(whoPayed);
     // call factory to determine the debt
     DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
                               whoPayed, person1Cost, person2Cost, id);

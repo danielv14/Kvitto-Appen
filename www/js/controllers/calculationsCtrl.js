@@ -13,7 +13,7 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOw
     // set scope variable from factories
     $scope.items = Items.getItemsArray(id);
     $scope.config = Config.getConfigArray(id);
-    $scope.who = WhoOwesWho.getDebtArray(id);
+    $scope.who = DetermineDebt.getDebtArray(id);
 
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db

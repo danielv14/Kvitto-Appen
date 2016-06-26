@@ -1,4 +1,4 @@
-app.controller('calculateCtrl', ['$scope', '$http', 'Config', 'Items', 'WhoOwesWho', 'Calculate', 'User', function($scope, $http, Config, Items, WhoOwesWho, Calculate, User) {
+app.controller('calculateCtrl', ['$scope', 'Config', 'Calculate', 'User', function($scope, Config, Calculate, User) {
 
     // get authData from current user as an object
     var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));

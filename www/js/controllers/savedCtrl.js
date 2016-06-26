@@ -1,5 +1,5 @@
 // controller for the database
-app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Config', 'WhoOwesWho', 'DetermineDebt', function($scope, $http, $firebaseArray, Items, Config, WhoOwesWho, DetermineDebt) {
+app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'DetermineDebt', function($scope, $firebaseArray, Items, Config, DetermineDebt) {
 
   // get authData from current user as an object
   var currentUser = JSON.parse(localStorage.getItem('firebase:session::ionic-kvitto-app'));
@@ -14,7 +14,7 @@ app.controller('savedCtrl',['$scope', '$http','$firebaseArray' , 'Items', 'Confi
 
   // set up scope variables from factories
   $scope.config = Config.getConfigArray(id);
-  $scope.who = WhoOwesWho.getDebtArray(id);
+  $scope.who = DetermineDebt.getDebtArray(id);
 
   // create a connection to Firebase
   var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
