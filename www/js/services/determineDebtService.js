@@ -130,14 +130,16 @@ var app = angular.module('app')
 
     },
 
-    decreaseDebt: function(debtPerson1, debtPerson2, whoPaid, person1Cost, person2Cost, id) {
+    decreaseDebt: function(debtPerson1, debtPerson2, whoPaid, person1Cost, person2Cost, uid) {
+
       debt.setCurrentDebt(debtPerson1, debtPerson2);
       debt.setWhoPaidWithoutSession(whoPaid);
       console.log(whoPaid);
       console.log(id);
       console.log(debt.whoPaid);
 
-      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/who_owes_who');
+
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
 
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
