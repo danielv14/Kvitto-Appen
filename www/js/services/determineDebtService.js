@@ -1,7 +1,7 @@
 var app = angular.module('app')
 
 // factory for determine who is in debt
-.factory("DetermineDebt", function() {
+.factory("DetermineDebt", function($firebaseArray) {
 
   var debt = {
     whoPaid: '',
@@ -156,6 +156,12 @@ var app = angular.module('app')
         });
       }
 
+    },
+
+    // return the debt for each person
+    getDebtArray: function(uid) {
+      var debtRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/users/" + uid + "/who_owes_who");
+      return $firebaseArray(debtRef);
     }
 
   }
