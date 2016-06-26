@@ -9,7 +9,6 @@ var app = angular.module('app')
     currentDebtPerson2: '',
     newDebtPerson1: '',
     newDebtPerson2: '',
-    firebase: new Firebase('https://ionic-kvitto-app.firebaseio.com/who_owes_who'),
 
     // set who paid the receipt
     // get value from sessionStorage
