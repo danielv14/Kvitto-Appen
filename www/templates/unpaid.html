@@ -20,9 +20,9 @@
 
       <div class="item item-divider">Vem är skyldig vem</div>
       <!-- if person 1 shopped for more than person 2 -->
-      <li class="item" ng-show="who[0].$value < who[1].$value">{{config[1].$value}} är skyldig {{config[0].$value}} {{who[1].$value - who[0].$value}} kr</li>
+      <li class="item" ng-show="debt[0].$value < debt[1].$value">{{config[1].$value}} är skyldig {{config[0].$value}} {{debt[1].$value - debt[0].$value}} kr</li>
       <!-- if person 2 shopped for more than person 1 -->
-      <li class="item" ng-show="who[1].$value < who[0].$value">{{config[0].$value}} är skyldig {{config[1].$value}} {{who[0].$value - who[1].$value}} kr</li>
+      <li class="item" ng-show="debt[1].$value < debt[0].$value">{{config[0].$value}} är skyldig {{config[1].$value}} {{debt[0].$value - debt[1].$value}} kr</li>
 
 
     </div>

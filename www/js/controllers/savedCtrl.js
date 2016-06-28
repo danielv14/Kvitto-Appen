@@ -14,7 +14,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
 
   // set up scope variables from factories
   $scope.config = Config.getConfigArray(id);
-  $scope.who = DetermineDebt.getDebtArray(id);
+  $scope.debt = DetermineDebt.getDebtArray(id);
 
   // create a connection to Firebase
   var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
@@ -84,7 +84,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
 
     console.log(whoPayed);
     // call factory to determine the debt
-    DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
+    DetermineDebt.decreaseDebt($scope.debt[0].$value, $scope.debt[1].$value,
                               whoPayed, person1Cost, person2Cost, id);
 
   }
@@ -115,7 +115,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
 
 
     // call factory to determine debt's and update firebase db
-    DetermineDebt.increaseDebtWithoutSessionStorageWho($scope.who[0].$value, $scope.who[1].$value, whoPayed, person1Cost, person2Cost, id);
+    DetermineDebt.increaseDebtWithoutSessionStorageWho($scope.debt[0].$value, $scope.debt[1].$value, whoPayed, person1Cost, person2Cost, id);
 
 
 

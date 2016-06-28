@@ -15,7 +15,7 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
   // set up scope variables
   $scope.notFinished = Items.getItemsArray(id);
   $scope.config = Config.getConfigArray(id);
-  $scope.who = DetermineDebt.getDebtArray(id);
+  $scope.debt = DetermineDebt.getDebtArray(id);
   $scope.totalPerson1 = 0;
   $scope.totalPerson2 = 0;
 
@@ -45,7 +45,7 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
     });
 
     // call factory to determine the debt
-    DetermineDebt.decreaseDebt($scope.who[0].$value, $scope.who[1].$value,
+    DetermineDebt.decreaseDebt($scope.debt[0].$value, $scope.debt[1].$value,
                               whoPayed, person1Cost, person2Cost, id);
 
 
