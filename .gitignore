@@ -7,3 +7,5 @@ plugins/
 .bowerrc
 .editorconfig
 ionic.project
+
+www/js/kvitto-app.js
