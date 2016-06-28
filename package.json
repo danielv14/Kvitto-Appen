@@ -6,7 +6,7 @@
     "npm": "3.7.5"
   },
   "scripts": {
-    "build": "gulp"
+    "postinstall": "gulp"
   },
   "description": "App to split up receipts",
   "dependencies": {
