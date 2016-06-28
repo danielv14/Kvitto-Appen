@@ -54,8 +54,9 @@ app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth
 
   }
 
+  // login with facebook
   $scope.loginWithFacebook = function() {
-    console.log('klick');
+
     // set reload to true
     sessionStorage.reload = true;
     ref.authWithOAuthRedirect("facebook", function(error) {
