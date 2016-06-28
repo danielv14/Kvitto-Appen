@@ -49,7 +49,7 @@ var app = angular.module('app')
           person1: "John Doe",
           person2: "Jane Doe",
         },
-        who_owes_who: {
+        debt: {
           person1owesperson2: 0,
           person2owesperson1: 0
         }

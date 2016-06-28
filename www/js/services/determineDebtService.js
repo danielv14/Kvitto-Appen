@@ -75,7 +75,7 @@ var app = angular.module('app')
       debt.setWhoPaid();
       debt.setCurrentDebt(currentDebtPerson1, currentDebtPerson2);
 
-      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/debt');
 
 
       // if person 1 paid
@@ -104,7 +104,7 @@ var app = angular.module('app')
     increaseDebtWithoutSessionStorageWho: function(currentDebtPerson1, currentDebtPerson2, who, costPerson1, costPerson2, uid) {
       debt.setWhoPaidWithoutSession(who);
 
-      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/debt');
 
 
       // if person 1 paid
@@ -135,7 +135,7 @@ var app = angular.module('app')
       debt.setWhoPaidWithoutSession(whoPaid);
 
 
-      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/who_owes_who');
+      var debtRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + uid + '/debt');
 
       // if person 1 paid
       if (debt.whoPaid == 'person1') {
@@ -160,7 +160,7 @@ var app = angular.module('app')
 
     // return the debt for each person
     getDebtArray: function(uid) {
-      var debtRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/users/" + uid + "/who_owes_who");
+      var debtRef = new Firebase("https://ionic-kvitto-app.firebaseio.com/users/" + uid + "/debt");
       return $firebaseArray(debtRef);
     }
 
