@@ -6,12 +6,31 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate')
+
+
+
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  js: ['./www/js/app.js', './www/js/*/*.js']
 };
 
-gulp.task('default', ['sass']);
+// concat js files and add sourcemaps
+// also use ngAnnotate and uglify on the files for smaller footprint
+gulp.task('js', function() {
+  return gulp.src(['./www/js/app.js', './www/js/*/*.js'])
+    .pipe(sourcemaps.init())
+      .pipe(concat('kvitto-app.js'))
+      .pipe(ngAnnotate())
+      .pipe(uglify())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./www/js/'));
+})
+
+gulp.task('default', ['sass', 'js']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -28,6 +47,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.js, ['js']);
 });
 
 gulp.task('install', ['git-check'], function() {
