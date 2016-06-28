@@ -6,7 +6,7 @@
 
       <!-- only show unpaid if there are any-->
 
-        <!-- Unpayed receipts -->
+        <!-- Unpaid receipts -->
         <div class="item item-divider">Obetalda</div>
         <span ng-if="unpaidReceiptCount == 0">
           <li class="item">
@@ -18,14 +18,14 @@
             ng-repeat="item in items_unpaid | filter:{done:false} | orderBy:'-createdAt'">
         </li>
 
-      <!-- Payed receipts -->
+      <!-- Paid receipts -->
       <div class="item item-divider">Betalda</div>
       <!-- repeat all the items by filiter and order them -->
       <li class="item item-icon-left item-icon-right"
           ng-include src="'templates/_savedList.html'"
           ng-repeat="item in items | filter:{done:true} | orderBy:'-createdAt'">
       </li>
-      <!-- end of payed receipts -->
+      <!-- end of paid receipts -->
     </div>
 
     <!-- ininity scroll -->

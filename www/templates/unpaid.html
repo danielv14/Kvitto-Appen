@@ -6,7 +6,7 @@
       <!-- Paid by person 1 -->
       <div class="item item-divider">{{config[0].$value}} betalade</div>
       <a ng-include src="'templates/_unpaidList.html'"
-         ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person1'} | orderBy:'-createdAt'"
+         ng-repeat="item in notFinished | filter:{done:false, whoPaid:'person1'} | orderBy:'-createdAt'"
          ng-click="markDone(item.$id)"
          class="item item-icon-left">
       </a>
@@ -14,7 +14,7 @@
       <!-- Paid py person 2 -->
       <div class="item item-divider">{{config[1].$value}} betalade</div>
       <a ng-include src="'templates/_unpaidList.html'"
-         ng-repeat="item in notFinished | filter:{done:false, whoPayed:'person2'} | orderBy:'-createdAt'"
+         ng-repeat="item in notFinished | filter:{done:false, whoPaid:'person2'} | orderBy:'-createdAt'"
          ng-click="markDone(item.$id)" class="item item-icon-left">
       </a>
 

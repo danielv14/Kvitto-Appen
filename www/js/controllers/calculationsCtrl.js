@@ -35,7 +35,7 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'Deter
         namePerson2: $scope.config[1].$value,
         'createdAt': Firebase.ServerValue.TIMESTAMP,
         'done': false,
-        'whoPayed': sessionStorage.whoPaid,
+        'whoPaid': sessionStorage.whoPaid,
         'category': sessionStorage.category,
         'note': sessionStorage.note
       })

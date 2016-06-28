@@ -31,22 +31,22 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
     // varaibles for cost for person1 and person2
     var person1Cost = 0;
     var person2Cost = 0;
-    var whoPayed = '';
+    var whoPaid = '';
 
     // get snapshot once
     receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
-      console.log(snapshot.val().whoPayed);
+      console.log(snapshot.val().whoPaid);
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
-      whoPayed = snapshot.val().whoPayed;
+      whoPaid = snapshot.val().whoPaid;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
 
     // call factory to determine the debt
     DetermineDebt.decreaseDebt($scope.debt[0].$value, $scope.debt[1].$value,
-                              whoPayed, person1Cost, person2Cost, id);
+                              whoPaid, person1Cost, person2Cost, id);
 
 
 
