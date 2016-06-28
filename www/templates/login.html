@@ -1,18 +1,41 @@
 <ion-view view-title="Logga in" name="login-view">
-  <ion-content class="padding ">
+  <ion-content class="padding login-wrapper ">
     <br>
-    <img class="icon-login" src="../img/login.png" alt="">
+    <h2 class="text-center white">
+      Få bättre ordning på gemensamma inköp!
+    </h2>
+    <!-- <img class="icon-login" src="../img/login.png" alt=""> -->
     <br>
-    <p class="text-center lead">
-      Logga in med ett google konto
-    </p>
-    <p class="text-center lead">
-      för att få en personlig upplevelse
-    </p>
 
-    <br>
-    <button class="button button-block button-assertive button-outline" ng-click="loginWithGoogle()">Logga in med Google</button>
-    <button class="button button-block button-positive button-outline" ng-click="loginWithFacebook()">Logga in med Facebook</button>
+    <section class="white how-to">
+      <h3 class="white">Hur fungerar det?</h3>
+      <p>Appen finns till för att hjälpa par att smidigare handla gemensama samt individuella inköp på ett och samma kvitto och dela upp kostnaderna därefter.</p>
+      <p>Inte längre behöver ni slå ihop alla kvitton och försöka räkna ut vem som är skyldig vem utan appen sköter detta åt er automatiskt.</p>
+      <ol>
+        <li>
+           1. Handla precis som vanligt
+        </li>
+        <li>
+          2. Ta alla varor på samma inköp / kvitto
+        </li>
+        <li>3. Spar kvittot och räkna ut kostnaden för de individuella inköpen</li>
+        <li>
+          4. Mata in de indivudella kostnaderna samt det totala priset och låt appen göra resten åt er
+        </li>
+      </ol>
+    </section>
+
+    <section class="login">
+      <p class="text-center lead white">
+        Logga in med ett konto från dina sociala medier
+        för att få en personlig upplevelse!
+      </p>
+      <br>
+      <button class="button button-block button-assertive" ng-click="loginWithGoogle()"><i class="ion-social-google light"></i></button>
+      <button class="button button-block button-positive" ng-click="loginWithFacebook()"><i class="ion-social-facebook light"></i></button>
+    </section>
+
+
 
 
   </ion-content>

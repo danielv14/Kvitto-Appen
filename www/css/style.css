@@ -3,6 +3,10 @@
   padding-right: 15px;
 }
 
+
+section.login {
+  margin-top: 50px;
+}
 .gray {
   color: #D3D3D3;
 }
