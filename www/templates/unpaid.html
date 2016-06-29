@@ -29,10 +29,22 @@
       </a>
 
       <div class="item item-divider">Vem är skyldig vem</div>
+      <li class="item" ng-show="debt[0].$value == 0 && debt[1].$value == 0">
+        Ingen aktuell skuld
+      </li>
       <!-- if person 1 shopped for more than person 2 -->
-      <li class="item" ng-show="debt[0].$value < debt[1].$value">{{config[1].$value}} är skyldig {{config[0].$value}} {{debt[1].$value - debt[0].$value}} kr</li>
+      <li class="item" ng-show="debt[0].$value < debt[1].$value">
+        {{config[1].$value}} är skyldig {{config[0].$value}} {{debt[1].$value - debt[0].$value}} kr
+      </li>
       <!-- if person 2 shopped for more than person 1 -->
-      <li class="item" ng-show="debt[1].$value < debt[0].$value">{{config[0].$value}} är skyldig {{config[1].$value}} {{debt[0].$value - debt[1].$value}} kr</li>
+      <li class="item" ng-show="debt[1].$value < debt[0].$value">
+        {{config[0].$value}} är skyldig {{config[1].$value}} {{debt[0].$value - debt[1].$value}} kr
+      </li>
+      <!-- if debt's are a tie -->
+      <li class="item" ng-cloak ng-show="debt[0].$value == debt[1].$value && debt[0].$value != 0 && debt[1].$value != 0">
+        Era skulder tar ut varandra
+      </li>
+
 
 
     </div>
