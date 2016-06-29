@@ -8,5 +8,5 @@ Vidare kategoriseras kvitton för att ge användare bättre inblick i vad varje 
 
 
 
-## Användaren
+## Inloggning
 Det går att logga in med antingen Google eller Facebook. Om det är första gången en användare loggar in skapas ett konto åt användaren i databasen. Hela applikationen är skyddad bakom inloggning då all funktionalitet är knutet till inloggning och en användarens unika id. När en användare är inloggad kan denne i dagsläget uppdatera namnen på de två personer som delar på diverse inköp.
