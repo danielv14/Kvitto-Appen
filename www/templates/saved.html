@@ -14,7 +14,7 @@
           </li>
         </span>
         <li class="item item-icon-left item-icon-right"
-            ng-include src="'templates/_savedList.html'"
+            ng-include src="'templates/_savedListItem.html'"
             ng-repeat="item in items_unpaid | filter:{done:false} | orderBy:'-createdAt'">
         </li>
 
@@ -22,7 +22,7 @@
       <div class="item item-divider">Betalda</div>
       <!-- repeat all the items by filiter and order them -->
       <li class="item item-icon-left item-icon-right"
-          ng-include src="'templates/_savedList.html'"
+          ng-include src="'templates/_savedListItem.html'"
           ng-repeat="item in items | filter:{done:true} | orderBy:'-createdAt'">
       </li>
       <!-- end of paid receipts -->
