@@ -36,15 +36,19 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
   // snapshot to get unsettled receipts
   qRef.on("value", function(snapshot) {
     var unpaidCount = 0;
+    var paidCount = 0;
     // loop through each snapshot
     snapshot.forEach(function(receipt) {
       // if receipt is not done, iterate count
       if (!receipt.child('done').val()) {
-        unpaidCount += 1
+        unpaidCount += 1;
+      } else if (receipt.child('done').val()) {
+        paidCount += 1;
       }
     })
-    // attach unpaid count to scope
+    // attach unpaid and paid count to scope
     $scope.unpaidReceiptCount = unpaidCount;
+    $scope.paidReceiptCount = paidCount;
 
   });
 

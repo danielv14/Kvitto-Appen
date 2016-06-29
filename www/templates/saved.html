@@ -16,6 +16,11 @@
 
       <!-- Paid receipts -->
       <div class="item item-divider">Betalda</div>
+      <span ng-if="paidReceiptCount == 0">
+        <li class="item">
+          Inga uppgjorda kvitton
+        </li>
+      </span>
       <!-- repeat all the items by filiter and order them -->
       <li class="item item-icon-left item-icon-right"
           ng-include src="'templates/_savedListItem.html'"
