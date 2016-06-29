@@ -11,31 +11,6 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
     var id = currentUser.facebook.id;
   }
 
-  // open up a new connection to receipts section in db
-  var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
-
-  // snapshot to get done and not done receipts
-  qRef.on("value", function(snapshot) {
-    var person1Count = 0;
-    var person2Count = 0;
-    // loop through each snapshot
-    snapshot.forEach(function(receipt) {
-      var obj = receipt.val();
-      // if receipt is not done, iterate count
-      if (obj.whoPaid === 'person1') {
-        person1Count += 1;
-      } else if (obj.whoPaid === 'person2') {
-        person2Count += 1;
-      }
-    })
-
-    // attach unpaid and paid count to scope
-    $scope.person1Count = person1Count;
-    $scope.person2Count = person2Count;
-  });
-
-
-
   // set up scope variables
   $scope.notFinished = Items.getItemsArray(id);
   $scope.config = Config.getConfigArray(id);

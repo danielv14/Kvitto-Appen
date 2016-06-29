@@ -5,9 +5,9 @@
 
       <!-- Paid by person 1 -->
       <div class="item item-divider">{{config[0].$value}} betalade</div>
-      <span ng-if="person1Count == 0">
+      <span ng-if="debt[1].$value == 0">
         <li class="item">
-          Inga betalda kvitton
+          Inga obetalda kvitton
         </li>
       </span>
       <a ng-include src="'templates/_unpaidListItem.html'"
@@ -18,9 +18,9 @@
 
       <!-- Paid py person 2 -->
       <div class="item item-divider">{{config[1].$value}} betalade</div>
-      <span ng-if="person2Count == 0">
+      <span ng-if="debt[0].$value == 0">
         <li class="item">
-          Inga betalda kvitton
+          Inga obetalda kvitton
         </li>
       </span>
       <a ng-include src="'templates/_unpaidListItem.html'"
