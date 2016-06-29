@@ -33,7 +33,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
   // open up a new connection to receipts section in db
   var qRef =  new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
 
-  // snapshot to get unsettled receipts
+  // snapshot to get done and not done receipts
   qRef.on("value", function(snapshot) {
     var unpaidCount = 0;
     var paidCount = 0;
