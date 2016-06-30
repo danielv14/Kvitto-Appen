@@ -23,6 +23,14 @@ app.controller('calculateCtrl', ['$scope', 'Config', 'Calculate', 'User', functi
       // call factory function to do calculations
       Calculate.calculate(amount, person1, person2, whoPaid, category, note);
 
+      // reset scope models after calculations have been done
+      $scope.amount            = '';
+      $scope.person1           = '';
+      $scope.person2           = '';
+      $scope.data.singleSelect = '';
+      $scope.category.name     = '';
+      $scope.note              = ''
+
     }
 
   }])
