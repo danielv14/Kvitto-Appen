@@ -4,11 +4,11 @@ var app = angular.module('app')
 .factory("DetermineDebt", function($firebaseArray) {
 
   var debt = {
-    whoPaid: '',
+    whoPaid           : '',
     currentDebtPerson1: '',
     currentDebtPerson2: '',
-    newDebtPerson1: '',
-    newDebtPerson2: '',
+    newDebtPerson1    : '',
+    newDebtPerson2    : '',
 
     // set who paid the receipt
     // get value from sessionStorage

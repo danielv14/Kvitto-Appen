@@ -4,9 +4,9 @@ var app = angular.module('app')
 .factory("User", function($firebaseArray) {
 
   var user = {
-    baseRef: new Firebase('https://ionic-kvitto-app.firebaseio.com'),
+    baseRef : new Firebase('https://ionic-kvitto-app.firebaseio.com'),
     usersRef: new Firebase('https://ionic-kvitto-app.firebaseio.com/users'),
-    uid: '',
+    uid     : '',
 
     // login with google
     loginGoogle: function() {

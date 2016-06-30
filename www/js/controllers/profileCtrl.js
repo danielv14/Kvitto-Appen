@@ -8,15 +8,15 @@ app.controller('profileCtrl',['$scope', '$location', 'Config', 'User', '$firebas
   // create variable for id of current user depending on OAuth
   if ($scope.currentUser.provider == 'google') {
 
-    var id = $scope.currentUser.google.id;
+    var id              = $scope.currentUser.google.id;
     $scope.profileImage = $scope.currentUser.google.profileImageURL;
-    $scope.displayName = $scope.currentUser.google.displayName;
+    $scope.displayName  = $scope.currentUser.google.displayName;
 
   } else if ($scope.currentUser.provider == 'facebook') {
 
-    var id = $scope.currentUser.facebook.id;
+    var id              = $scope.currentUser.facebook.id;
     $scope.profileImage = $scope.currentUser.facebook.profileImageURL;
-    $scope.displayName = $scope.currentUser.facebook.displayName;
+    $scope.displayName  = $scope.currentUser.facebook.displayName;
 
   }
 

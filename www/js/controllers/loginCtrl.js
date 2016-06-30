@@ -1,7 +1,7 @@
 app.controller('loginCtrl',['$scope', '$location','$firebaseArray','User', 'Auth', function($scope, $location, $firebaseArray, User, Auth) {
 
   // setup reference variable
-  var ref = new Firebase("https://ionic-kvitto-app.firebaseio.com/");
+  var ref      = new Firebase("https://ionic-kvitto-app.firebaseio.com/");
   var usersRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users');
 
   $scope.auth = Auth;

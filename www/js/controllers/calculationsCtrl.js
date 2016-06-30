@@ -11,9 +11,9 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'Deter
     }
 
     // set scope variable from factories
-    $scope.items = Items.getItemsArray(id);
+    $scope.items  = Items.getItemsArray(id);
     $scope.config = Config.getConfigArray(id);
-    $scope.debt = DetermineDebt.getDebtArray(id);
+    $scope.debt   = DetermineDebt.getDebtArray(id);
 
     // attach sessionStorage values (cost for each person and percentage)
     // to scope variables and use them later of to save receipt to db
@@ -34,10 +34,10 @@ app.controller('calculationsCtrl', ['$scope', '$http', 'Config', 'Items', 'Deter
         namePerson1: $scope.config[0].$value,
         namePerson2: $scope.config[1].$value,
         'createdAt': Firebase.ServerValue.TIMESTAMP,
-        'done': false,
-        'whoPaid': sessionStorage.whoPaid,
-        'category': sessionStorage.category,
-        'note': sessionStorage.note
+        'done'     : false,
+        'whoPaid'  : sessionStorage.whoPaid,
+        'category' : sessionStorage.category,
+        'note'     : sessionStorage.note
       })
 
       // call factory to determine debt's and update firebase db

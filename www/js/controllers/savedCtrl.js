@@ -14,7 +14,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
 
   // set up scope variables from factories
   $scope.config = Config.getConfigArray(id);
-  $scope.debt = DetermineDebt.getDebtArray(id);
+  $scope.debt   = DetermineDebt.getDebtArray(id);
 
   // create a connection to Firebase
   var baseRef = new Firebase('https://ionic-kvitto-app.firebaseio.com/users/' + id + '/receipt');
@@ -36,7 +36,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
   // snapshot to get done and not done receipts
   qRef.on("value", function(snapshot) {
     var unpaidCount = 0;
-    var paidCount = 0;
+    var paidCount   = 0;
     // loop through each snapshot
     snapshot.forEach(function(receipt) {
       // if receipt is not done, iterate count
@@ -48,7 +48,7 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
     })
     // attach unpaid and paid count to scope
     $scope.unpaidReceiptCount = unpaidCount;
-    $scope.paidReceiptCount = paidCount;
+    $scope.paidReceiptCount   = paidCount;
 
   });
 
@@ -73,15 +73,14 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
     // varaibles for cost for person1 and person2
     var person1Cost = 0;
     var person2Cost = 0;
-    var whoPaid = '';
+    var whoPaid     = '';
 
     // get snapshot once
     receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
-      console.log(snapshot.val().whoPaid);
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
-      whoPaid = snapshot.val().whoPaid;
+      whoPaid     = snapshot.val().whoPaid;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
@@ -104,14 +103,14 @@ app.controller('savedCtrl',['$scope','$firebaseArray' , 'Items', 'Config', 'Dete
     // varaibles for cost for person1 and person2
     var person1Cost = 0;
     var person2Cost = 0;
-    var whoPaid = '';
+    var whoPaid     = '';
 
     // get snapshot once
     receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
-      whoPaid = snapshot.val().whoPaid;
+      whoPaid     = snapshot.val().whoPaid;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });

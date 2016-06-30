@@ -5,14 +5,14 @@ var app = angular.module('app')
 
     var receipt = {
 
-      amount: '',
-      costPerson1: '',
-      costPerson2: '',
+      amount           : '',
+      costPerson1      : '',
+      costPerson2      : '',
       percentagePerson1: '',
       percentagePerson2: '',
-      eachOfTotal: '',
-      whoPaid: '',
-      category: '',
+      eachOfTotal      : '',
+      whoPaid          : '',
+      category         : '',
 
       // set total amount
       setAmount: function(amount) {
@@ -45,8 +45,8 @@ var app = angular.module('app')
       // set rounded percentage values for each person
       // is dependant of setCostPerson() since it uses values set from that function
       setRoundPercentage: function() {
-        var person1_percent = (parseFloat(this.costPerson1)*100/parseFloat(this.amount));
-        var person2_percent = (parseFloat(this.costPerson2)*100/parseFloat(this.amount));
+        var person1_percent    = (parseFloat(this.costPerson1)*100/parseFloat(this.amount));
+        var person2_percent    = (parseFloat(this.costPerson2)*100/parseFloat(this.amount));
         this.percentagePerson1 = Math.round(person1_percent * 100) / 100;
         this.percentagePerson2 = Math.round(person2_percent * 100) / 100;
       }
@@ -73,13 +73,13 @@ var app = angular.module('app')
         * attach values to sessionStorage
         */
         // store values to sessionStorage for person 1
-        sessionStorage.costPerson1 = receipt.costPerson1;
+        sessionStorage.costPerson1       = receipt.costPerson1;
         sessionStorage.percentagePerson1 = receipt.percentagePerson1;
         // store values to sessionStorage for person 2
-        sessionStorage.costPerson2 = receipt.costPerson2;
+        sessionStorage.costPerson2       = receipt.costPerson2;
         sessionStorage.percentagePerson2 = receipt.percentagePerson2;
         // store value to sessionStorage about who paid
-        sessionStorage.whoPaid = receipt.whoPaid;
+        sessionStorage.whoPaid           = receipt.whoPaid;
         // store value to sessionStorage about receipt category
         sessionStorage.setItem("category", receipt.category);
         // can save passed note variable directly to sessionStorage

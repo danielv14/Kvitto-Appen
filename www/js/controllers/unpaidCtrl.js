@@ -12,9 +12,9 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
   }
 
   // set up scope variables
-  $scope.notFinished = Items.getItemsArray(id);
-  $scope.config = Config.getConfigArray(id);
-  $scope.debt = DetermineDebt.getDebtArray(id);
+  $scope.notFinished  = Items.getItemsArray(id);
+  $scope.config       = Config.getConfigArray(id);
+  $scope.debt         = DetermineDebt.getDebtArray(id);
   $scope.totalPerson1 = 0;
   $scope.totalPerson2 = 0;
 
@@ -30,15 +30,14 @@ app.controller('unpaidCtrl',['$scope', '$http', 'Items', 'Config', 'DetermineDeb
     // varaibles for cost for person1 and person2
     var person1Cost = 0;
     var person2Cost = 0;
-    var whoPaid = '';
+    var whoPaid     = '';
 
     // get snapshot once
     receipt.once("value", function(snapshot) {
       // change the variables with data from the snapshot
-      console.log(snapshot.val().whoPaid);
       person1Cost = snapshot.val().costPerson1;
       person2Cost = snapshot.val().costPerson2;
-      whoPaid = snapshot.val().whoPaid;
+      whoPaid     = snapshot.val().whoPaid;
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
