@@ -33,7 +33,7 @@ gulp.task('js', function() {
 gulp.task('default', ['sass', 'js']);
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src('./scss/app.scss')
     .pipe(sass())
     .on('error', sass.logError)
     .pipe(gulp.dest('./www/css/'))
