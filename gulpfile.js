@@ -14,7 +14,7 @@ var ngAnnotate = require('gulp-ng-annotate')
 
 
 var paths = {
-  sass: ['./scss/**/*.scss'],
+  sass: ['./scss/**/*.scss', './scss/*.scss'],
   js: ['./www/js/app.js', './www/js/*/*.js']
 };
 
