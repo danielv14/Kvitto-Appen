@@ -1,13 +1,13 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
+var gulp       = require('gulp');
+var gutil      = require('gulp-util');
+var bower      = require('bower');
+var concat     = require('gulp-concat');
+var sass       = require('gulp-sass');
+var minifyCss  = require('gulp-minify-css');
+var rename     = require('gulp-rename');
+var sh         = require('shelljs');
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
+var uglify     = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate')
 
 
